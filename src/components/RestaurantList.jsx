@@ -38,7 +38,7 @@ const RestaurantList = () => {
 
   return (
     <>
-      <div id="search-button" className="mx-auto mt-10 max-w-[1060px]">
+      <div id="search-button" className="mx-auto max-w-[1060px]">
         <SearchButton
           searchText={searchText}
           setSearchText={setSearchText}

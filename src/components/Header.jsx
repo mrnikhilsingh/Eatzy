@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router";
+
 import logo from "../assets/images/restaurant-logo.jpg";
 
 const Header = () => {
@@ -21,30 +23,38 @@ const Header = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
-              <a
-                href="#"
-                className="rounded-md border border-white px-3 py-2 font-medium hover:border-black"
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  `${isActive ? "border-black" : "border-white"} rounded-md border px-3 py-2 font-medium hover:border-black`
+                }
               >
                 Home
-              </a>
-              <a
-                href="#"
-                className="rounded-md border border-white px-3 py-2 font-medium hover:border-black"
+              </NavLink>
+              <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                  `${isActive ? "border-black" : "border-white"} rounded-md border px-3 py-2 font-medium hover:border-black`
+                }
               >
                 About
-              </a>
-              <a
-                href="#"
-                className="rounded-md border border-white px-3 py-2 font-medium hover:border-black"
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `${isActive ? "border-black" : "border-white"} rounded-md border px-3 py-2 font-medium hover:border-black`
+                }
               >
                 Contact
-              </a>
-              <a
-                href="#"
-                className="rounded-md border border-white px-3 py-2 font-medium hover:border-black"
+              </NavLink>
+              <NavLink
+                to="/cart"
+                className={({ isActive }) =>
+                  `${isActive ? "border-black" : "border-white"} rounded-md border px-3 py-2 font-medium hover:border-black`
+                }
               >
                 Cart
-              </a>
+              </NavLink>
             </div>
           </div>
 

@@ -1,15 +1,5 @@
-import Header from "./components/Header";
-import RestaurantList from "./components/RestaurantList";
-import Footer from "./components/Footer";
-
 function App() {
-  return (
-    <>
-      <Header />
-      <RestaurantList />
-      <Footer />
-    </>
-  );
+  return <div>App Component</div>;
 }
 
 export default App;

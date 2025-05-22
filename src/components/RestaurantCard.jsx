@@ -1,6 +1,9 @@
+import { Link } from "react-router";
 import { IMG_CDN_URL } from "../config";
+
 const RestaurantCard = ({ restaurant }) => {
   const {
+    id,
     name,
     cloudinaryImageId,
     avgRating,
@@ -9,17 +12,22 @@ const RestaurantCard = ({ restaurant }) => {
     sla,
     cuisines,
   } = restaurant.info;
-  // console.log(cuisines);
+
+  // Convert spaces to '-'
+  const areaNameEncoded = areaName.split(" ").join("-");
+  const nameEncoded = name.split(" ").join("-");
 
   return (
     <div className="w-[240px] overflow-hidden rounded-lg bg-white transition-transform hover:scale-95">
-      <a href="#">
+      <Link
+        to={`/restaurant/city/gurgaon/${areaNameEncoded}/${nameEncoded}/${id}`}
+      >
         {/* Image Section with Gradient Overlay */}
         <div className="relative">
           {/* Base Image */}
           <img
             src={IMG_CDN_URL + cloudinaryImageId}
-            alt="Chaayos Tea"
+            alt={name}
             className="h-40 w-full rounded-2xl object-cover"
           />
 
@@ -65,7 +73,7 @@ const RestaurantCard = ({ restaurant }) => {
             </div>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
