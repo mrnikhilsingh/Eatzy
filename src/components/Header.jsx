@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { NavLink } from "react-router";
 
 import logo from "../assets/images/restaurant-logo.jpg";
+
+import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,6 +11,8 @@ const Header = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const isOnline = useOnlineStatus();
 
   return (
     <nav className="shadow-sm">
@@ -55,6 +59,7 @@ const Header = () => {
               >
                 Cart
               </NavLink>
+              <span>{isOnline ? "🟢" : "🔴"}</span>
             </div>
           </div>
 
