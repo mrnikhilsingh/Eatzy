@@ -1,18 +1,13 @@
+import useFilterData from "../hooks/useFilterData";
+
 const SearchButton = ({
   searchText,
   setSearchText,
   restaurants,
   setFilteredRestaurants,
 }) => {
-  // function to filter the searched restaurant
-  function filterData(searchText, restaurants) {
-    const filteredData = restaurants.filter((restaurant) => {
-      return restaurant?.info?.name
-        ?.toLowerCase()
-        .includes(searchText.toLowerCase());
-    });
-    setFilteredRestaurants(filteredData);
-  }
+  // useFilterData returns a function to filter data
+  const filterData = useFilterData();
 
   return (
     <div className="relative max-w-sm">
@@ -50,7 +45,8 @@ const SearchButton = ({
         {/* Search Button */}
         <button
           onClick={() => {
-            filterData(searchText, restaurants);
+            const filteredData = filterData(searchText, restaurants);
+            setFilteredRestaurants(filteredData);
           }}
           className="cursor-pointer bg-blue-500 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-600"
         >

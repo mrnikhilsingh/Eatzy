@@ -1,40 +1,19 @@
+import { useState } from "react";
+
 import RestaurantCard from "./RestaurantCard";
-import { useState, useEffect } from "react";
-import axios from "axios";
 import ShimmerCard from "./ShimmerCard";
 import SearchButton from "./SearchButton";
 
+import useRestaurant from "../hooks/useRestaurant";
+
 const RestaurantList = () => {
-  const [restaurants, setRestaurants] = useState(null);
-  const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const [searchText, setSearchText] = useState("");
+
+  const { restaurants, filteredRestaurants, setFilteredRestaurants } =
+    useRestaurant();
 
   // random array to multiply and map shimmer card
   const randomArray = new Array(8).fill("");
-
-  useEffect(() => {
-    fetchRestaurants();
-  }, []);
-
-  async function fetchRestaurants() {
-    try {
-      const response = await axios.get(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4717584&lng=77.1315321&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING",
-      );
-      const data = response.data;
-
-      setRestaurants(
-        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants,
-      );
-      setFilteredRestaurants(
-        data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants,
-      );
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
 
   return (
     <>
