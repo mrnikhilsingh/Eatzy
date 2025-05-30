@@ -15,15 +15,34 @@ const RestaurantList = () => {
   // random array to multiply and map shimmer card
   const randomArray = new Array(8).fill("");
 
+  // filter top rated restaurants
+  const handleClick = () => {
+    const filteredRestaurants = restaurants.filter(
+      (restaurant) => restaurant.info.avgRating >= 4.5,
+    );
+    setFilteredRestaurants(filteredRestaurants);
+  };
+
   return (
     <>
-      <div id="search-button" className="mx-auto max-w-[1060px]">
+      <div
+        id="search-button"
+        className="mx-auto flex max-w-[1060px] items-center"
+      >
         <SearchButton
           searchText={searchText}
           setSearchText={setSearchText}
           restaurants={restaurants}
           setFilteredRestaurants={setFilteredRestaurants}
         />
+        <div className="ml-5">
+          <button
+            onClick={handleClick}
+            className="rounded-md border border-gray-400 bg-white px-4 py-1 font-semibold text-gray-800 shadow hover:bg-gray-100"
+          >
+            Top Rated
+          </button>
+        </div>
       </div>
       <div
         id="restaurant-list"
