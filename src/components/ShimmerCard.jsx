@@ -8,7 +8,7 @@ const ShimmerCard = () => {
             className="h-full w-full animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
             style={{
               backgroundSize: "200% 100%",
-              animation: "shimmer 1.5s infinite linear",
+              animation: "shimmer 3s infinite linear",
             }}
           />
         </div>

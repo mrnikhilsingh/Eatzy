@@ -3,6 +3,7 @@ import axios from "axios";
 
 const useRestaurantMenu = (id) => {
   const [restaurant, setRestaurant] = useState(null);
+  const [categories, setCategories] = useState(null);
 
   useEffect(() => {
     fetchRestaurant();
@@ -16,12 +17,15 @@ const useRestaurantMenu = (id) => {
 
       const data = response.data;
       setRestaurant(data?.data?.cards[2]?.card?.card);
+      setCategories(
+        data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards,
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   }
 
-  return restaurant;
+  return [restaurant, categories];
 };
 
 export default useRestaurantMenu;

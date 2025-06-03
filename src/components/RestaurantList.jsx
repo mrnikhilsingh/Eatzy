@@ -38,7 +38,7 @@ const RestaurantList = () => {
         <div className="ml-5">
           <button
             onClick={handleClick}
-            className="rounded-md border border-gray-400 bg-white px-4 py-1 font-semibold text-gray-800 shadow hover:bg-gray-100"
+            className="cursor-pointer rounded-md border border-gray-300 bg-white px-4 py-1 font-semibold text-gray-800"
           >
             Top Rated
           </button>

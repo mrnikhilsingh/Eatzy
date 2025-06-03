@@ -12,7 +12,7 @@ const SearchButton = ({
   return (
     <div className="relative max-w-sm">
       {/* Search Input Group */}
-      <div className="flex items-center overflow-hidden rounded-full border border-gray-300 bg-white shadow-sm hover:shadow">
+      <div className="flex items-center overflow-hidden rounded-full border border-gray-300 bg-white">
         {/* Search Icon */}
         <div className="pl-4">
           <svg

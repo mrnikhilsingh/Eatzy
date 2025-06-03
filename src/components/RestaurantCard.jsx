@@ -51,7 +51,7 @@ const RestaurantCard = ({ restaurant }) => {
         <div className="p-2">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800">{name}</h3>
+              <h3 className="text-lg font-bold text-gray-800">{name}</h3>
 
               {/* Rating and Delivery Time */}
               <div className="mt-1 flex items-center gap-1">
@@ -59,17 +59,17 @@ const RestaurantCard = ({ restaurant }) => {
                   <span className="text-xs">{avgRating}</span>
                   <span className="text-xs">★</span>
                 </div>
-                <span className="text-sm text-gray-600">•</span>
-                <span className="text-sm text-gray-600">{sla?.slaString}</span>
+                <span className="text-sm font-semibold">•</span>
+                <span className="text-sm font-semibold">{sla?.slaString}</span>
               </div>
 
               {/* Restaurant Categories */}
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="text-md mt-1 font-semibold text-gray-500">
                 {cuisines.length > 2
                   ? `${cuisines.slice(0, 2).join(", ")}, ...`
                   : cuisines.join(", ")}
               </p>
-              <p className="text-sm text-gray-500">{areaName}</p>
+              <p className="text-md font-semibold text-gray-500">{areaName}</p>
             </div>
           </div>
         </div>
