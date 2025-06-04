@@ -86,6 +86,8 @@ const RestaurantDetails = () => {
         {/* Recommended Items Accordion */}
         <div className="mt-10">
           {itemCategories.map((itemCategory) => {
+            // console.log(itemCategory);
+
             return (
               <RestaurantCategory
                 key={itemCategory.card.card.categoryId}

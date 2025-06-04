@@ -4,17 +4,24 @@ import ItemList from "./ItemList";
 
 const RestaurantCategory = ({ itemCategory }) => {
   const [isReadMore, setIsReadMore] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [expandedSubIndex, setExpandedSubIndex] = useState({});
   // check if it is not a nested category
   if (itemCategory?.card?.card?.itemCards) {
     return (
       <div className="mb-1 rounded-md border border-gray-300 px-4 py-3">
-        {/* Accordion Head */}
-        <div className="flex cursor-pointer items-center justify-between">
+        {/* Accordion Head  */}
+        <div
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex cursor-pointer items-center justify-between"
+        >
           <p className="text-xl font-bold">
             {itemCategory?.card?.card?.title}(
             {itemCategory?.card?.card?.itemCards?.length})
           </p>
-          <span>
+          <span
+            className={`${isExpanded ? "rotate-180" : ""} flex gap-2 transition-transform duration-300`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="20"
@@ -25,16 +32,15 @@ const RestaurantCategory = ({ itemCategory }) => {
             </svg>
           </span>
         </div>
-        {/* Accordion Body */}
-        {itemCategory?.card?.card?.itemCards?.map((item) => {
-          return (
+        {
+          // Accordion Body
+          !!isExpanded && (
             <ItemList
-              key={item?.card?.info?.id}
-              item={item}
+              items={itemCategory?.card?.card?.itemCards}
               isReadMore={isReadMore}
             />
-          );
-        })}
+          )
+        }
       </div>
     );
   }
@@ -47,11 +53,22 @@ const RestaurantCategory = ({ itemCategory }) => {
       {itemCategory?.card?.card?.categories?.map((subCategory) => {
         return (
           <div key={subCategory?.categoryId}>
-            <div className="flex cursor-pointer items-center justify-between pt-4">
+            <div
+              onClick={() =>
+                setExpandedSubIndex((prevOpenItems) => ({
+                  ...prevOpenItems,
+                  [subCategory.categoryId]:
+                    !prevOpenItems[subCategory.categoryId],
+                }))
+              }
+              className="flex cursor-pointer items-center justify-between pt-4"
+            >
               <p className="text-md font-bold">
                 {subCategory?.title}({subCategory?.itemCards?.length})
               </p>
-              <span>
+              <span
+                className={`${expandedSubIndex[subCategory.categoryId] ? "rotate-180" : ""} transition-transform duration-300`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="18"
@@ -62,16 +79,15 @@ const RestaurantCategory = ({ itemCategory }) => {
                 </svg>
               </span>
             </div>
-            {/* Accordion Body */}
-            {subCategory.itemCards.map((item) => {
-              return (
+            {
+              /* Accordion Body */
+              !!expandedSubIndex[subCategory.categoryId] && (
                 <ItemList
-                  key={item?.card?.info?.id}
-                  item={item}
+                  items={subCategory?.itemCards}
                   isReadMore={isReadMore}
                 />
-              );
-            })}
+              )
+            }
           </div>
         );
       })}

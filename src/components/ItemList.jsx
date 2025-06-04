@@ -1,8 +1,12 @@
 import { IMG_CDN_URL } from "../lib/constants";
 
-const ItemList = ({ item, isReadMore }) => {
-  return (
-    <div className="flex items-start gap-x-12 border-b border-gray-300 pt-4 pb-8 last:border-none">
+const ItemList = ({ items, isReadMore }) => {
+  // console.log(items);
+  return items.map((item) => (
+    <div
+      key={item?.card?.info?.id}
+      className="flex items-start gap-x-12 border-b border-gray-300 pt-4 pb-8 last:border-none"
+    >
       <div className="w-9/12 pt-2">
         {item?.card?.info?.isVeg ? (
           // veg symbol
@@ -110,7 +114,7 @@ const ItemList = ({ item, isReadMore }) => {
         </button>
       </div>
     </div>
-  );
+  ));
 };
 
 export default ItemList;
