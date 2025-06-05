@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useParams } from "react-router";
 
 import ShimmerCard from "./ShimmerCard";
@@ -5,6 +6,7 @@ import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantDetails = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
   const { id } = useParams();
 
   // fetch restaurant menu data using custom hook
@@ -20,7 +22,6 @@ const RestaurantDetails = () => {
   });
 
   if (restaurant === null) return <ShimmerCard />;
-  // console.log(itemCategories);
 
   return (
     <div>
@@ -85,13 +86,17 @@ const RestaurantDetails = () => {
 
         {/* Recommended Items Accordion */}
         <div className="mt-10">
-          {itemCategories.map((itemCategory) => {
-            // console.log(itemCategory);
-
+          {itemCategories.map((itemCategory, index) => {
             return (
               <RestaurantCategory
                 key={itemCategory.card.card.categoryId}
                 itemCategory={itemCategory}
+                activeIndex={activeIndex === index}
+                setActiveIndex={() =>
+                  activeIndex === index
+                    ? setActiveIndex(null)
+                    : setActiveIndex(index)
+                }
               />
             );
           })}
