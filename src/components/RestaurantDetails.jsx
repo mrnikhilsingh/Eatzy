@@ -6,7 +6,7 @@ import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
 const RestaurantDetails = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const { id } = useParams();
 
   // fetch restaurant menu data using custom hook
@@ -28,7 +28,7 @@ const RestaurantDetails = () => {
       <div className="mx-auto w-7/12">
         {/* Restaurant Details */}
         <h1 className="text-3xl font-bold">{restaurant?.info?.name}</h1>
-        <div className="mt-5 rounded-xl border border-gray-300 p-5 shadow-lg">
+        <div className="mt-5 rounded-xl border border-gray-300 bg-white p-5 shadow-lg">
           <div className="flex items-center font-bold">
             <svg
               width="20"
@@ -85,7 +85,7 @@ const RestaurantDetails = () => {
         </div>
 
         {/* Recommended Items Accordion */}
-        <div className="mt-10">
+        <div className="mt-10 bg-white">
           {itemCategories.map((itemCategory, index) => {
             return (
               <RestaurantCategory

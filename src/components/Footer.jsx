@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-gray-800 py-8 text-white">
       <div className="mx-auto max-w-6xl px-4">
         {/* Footer Content Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-0">
           {/* Company Info */}
           <div className="col-span-1">
             <h3 className="mb-4 text-xl font-bold">Company Name</h3>
@@ -77,13 +77,13 @@ const Footer = () => {
           <div className="col-span-1">
             <h3 className="mb-4 text-lg font-bold">Stay Updated</h3>
             <p className="mb-4 text-gray-300">Subscribe to our newsletter</p>
-            <div className="flex">
+            <div className="flex max-w-80 md:max-w-full">
               <input
                 type="email"
                 placeholder="Your email"
-                className="rounded-l bg-gray-700 px-3 py-2 text-white focus:outline-none"
+                className="w-full min-w-0 flex-1 rounded-l bg-gray-700 py-3 pl-3 text-white focus:outline-none"
               />
-              <button className="rounded-r bg-blue-600 px-4 py-2 hover:bg-blue-700">
+              <button className="flex-shrink-0 rounded-r bg-blue-600 px-4 hover:bg-blue-700">
                 Sign Up
               </button>
             </div>

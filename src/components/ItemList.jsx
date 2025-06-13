@@ -1,7 +1,15 @@
 import { IMG_CDN_URL } from "../lib/constants";
 
+import { useDispatch } from "react-redux";
+import { addItem } from "../store/cartSlice";
+
 const ItemList = ({ items, isReadMore }) => {
-  // console.log(items);
+  const dispatch = useDispatch();
+
+  const handleClick = (item) => {
+    dispatch(addItem(item));
+  };
+
   return items.map((item) => (
     <div
       key={item?.card?.info?.id}
@@ -109,7 +117,10 @@ const ItemList = ({ items, isReadMore }) => {
             alt={item?.card?.info?.name}
           />
         </div>
-        <button className="absolute -bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-lg border border-gray-300 bg-white px-10 py-1 text-lg font-bold text-green-700 shadow-md">
+        <button
+          onClick={() => handleClick(item)}
+          className="absolute -bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-lg border border-gray-300 bg-white px-10 py-1 text-lg font-bold text-green-700 shadow-sm"
+        >
           ADD
         </button>
       </div>

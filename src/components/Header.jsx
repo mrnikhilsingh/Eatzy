@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router";
+import { useSelector } from "react-redux";
 
 import logo from "../assets/images/restaurant-logo.jpg";
 
@@ -13,6 +14,8 @@ const Header = () => {
   };
 
   const isOnline = useOnlineStatus();
+
+  const cartItems = useSelector((store) => store.cart);
 
   return (
     <nav className="shadow-sm">
@@ -54,10 +57,10 @@ const Header = () => {
               <NavLink
                 to="/cart"
                 className={({ isActive }) =>
-                  `${isActive ? "border-black" : "border-white"} rounded-md border px-3 py-2 font-medium hover:border-black`
+                  `${isActive ? "border-black" : "border-white"} rounded-md border px-3 py-2 font-bold hover:border-black`
                 }
               >
-                Cart
+                Cart - {cartItems.length}
               </NavLink>
               <span>{isOnline ? "🟢" : "🔴"}</span>
             </div>
