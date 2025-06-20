@@ -8,6 +8,7 @@ import useOnlineStatus from "../hooks/useOnlineStatus";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -63,6 +64,12 @@ const Header = () => {
                 Cart - {cartItems.length}
               </NavLink>
               <span>{isOnline ? "🟢" : "🔴"}</span>
+              <button
+                onClick={() => setIsLoggedIn(!isLoggedIn)}
+                className="cursor-pointer"
+              >
+                {isLoggedIn ? "Logout" : "Login"}
+              </button>
             </div>
           </div>
 
