@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router";
 
-import ShimmerCard from "./ShimmerCard";
+import ShimmerRestaurantDetail from "./ShimmerRestaurantDetail";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 
@@ -21,14 +21,16 @@ const RestaurantDetails = () => {
     );
   });
 
-  if (restaurant === null) return <ShimmerCard />;
+  if (restaurant === null) return <ShimmerRestaurantDetail />;
 
   return (
     <div>
-      <div className="mx-auto w-7/12">
+      <div className="mx-auto md:max-w-3xl">
         {/* Restaurant Details */}
-        <h1 className="text-3xl font-bold">{restaurant?.info?.name}</h1>
-        <div className="mt-5 rounded-xl border border-gray-300 bg-white p-5 shadow-lg">
+        <h1 className="text-2xl font-bold sm:text-3xl">
+          {restaurant?.info?.name}
+        </h1>
+        <div className="mt-5 rounded-xl border border-gray-300 bg-white p-4 shadow-lg sm:p-5">
           <div className="flex items-center font-bold">
             <svg
               width="20"

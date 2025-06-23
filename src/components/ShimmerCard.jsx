@@ -1,6 +1,6 @@
 const ShimmerCard = () => {
   return (
-    <div className="w-[240px] overflow-hidden rounded-lg bg-white shadow-md">
+    <div className="overflow-hidden rounded-lg bg-white shadow-md">
       {/* Shimmer Image Section */}
       <div className="relative h-32 overflow-hidden rounded-t-lg bg-gray-200">
         <div className="absolute inset-0">

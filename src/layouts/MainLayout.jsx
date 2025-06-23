@@ -9,7 +9,7 @@ const MainLayout = () => {
     <>
       <Provider store={store}>
         <Header />
-        <main className="bg-gray-50 px-4 py-16">
+        <main className="bg-gray-50 px-2 py-10 sm:px-3 sm:py-16 md:px-5">
           <Outlet />
         </main>
         <Footer />

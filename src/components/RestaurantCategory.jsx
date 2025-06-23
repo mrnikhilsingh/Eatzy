@@ -15,7 +15,7 @@ const RestaurantCategory = ({ itemCategory, activeIndex, setActiveIndex }) => {
           onClick={setActiveIndex}
           className="flex cursor-pointer items-center justify-between"
         >
-          <p className="text-xl font-bold">
+          <p className="text-lg font-bold sm:text-xl">
             {itemCategory?.card?.card?.title}(
             {itemCategory?.card?.card?.itemCards?.length})
           </p>

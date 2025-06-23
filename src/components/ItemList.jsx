@@ -13,9 +13,10 @@ const ItemList = ({ items, isReadMore }) => {
   return items.map((item) => (
     <div
       key={item?.card?.info?.id}
-      className="flex items-start gap-x-12 border-b border-gray-300 pt-4 pb-8 last:border-none"
+      className="flex flex-col items-start justify-between gap-4 border-b border-gray-300 pt-4 pb-8 last:border-none sm:flex-row sm:gap-x-12"
     >
-      <div className="w-9/12 pt-2">
+      {/* Item Details */}
+      <div className="max-w-lg pt-2">
         {item?.card?.info?.isVeg ? (
           // veg symbol
           <p>
@@ -54,7 +55,7 @@ const ItemList = ({ items, isReadMore }) => {
           </p>
         )}
         {/* item name */}
-        <p className="text-lg font-bold text-gray-600">
+        <p className="font-bold text-gray-600 sm:text-lg">
           {item?.card?.info?.name}
         </p>
         {/* item price */}
@@ -85,7 +86,11 @@ const ItemList = ({ items, isReadMore }) => {
               </span>
             </>
           ) : (
-            <span>₹{item?.card?.info?.price / 100}</span>
+            <span>
+              ₹
+              {item?.card?.info?.price / 100 ||
+                item?.card?.info?.defaultPrice / 100}
+            </span>
           )}
         </p>
         {/* item ratings */}
@@ -102,24 +107,25 @@ const ItemList = ({ items, isReadMore }) => {
         {/* item description */}
         <div className="flex items-end">
           <p
-            className={`${isReadMore ? "" : "line-clamp-2"} leading-5.5 font-semibold text-gray-500`}
+            className={`${isReadMore ? "" : "line-clamp-2"} font-semibold text-gray-500`}
           >
             {item?.card?.info?.description}
           </p>
         </div>
       </div>
-      <div className="relative w-3/12">
-        <div className="overflow-hidden rounded-xl">
+      {/* Item Image */}
+      <div className="relative w-44 shrink-0 md:w-48">
+        <div className="aspect-[4/3] overflow-hidden rounded-xl">
           {/* item image */}
           <img
-            className="h-auto max-w-full object-cover"
+            className="h-full w-full object-cover"
             src={IMG_CDN_URL + item?.card?.info?.imageId}
             alt={item?.card?.info?.name}
           />
         </div>
         <button
           onClick={() => handleClick(item)}
-          className="absolute -bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-lg border border-gray-300 bg-white px-10 py-1 text-lg font-bold text-green-700 shadow-sm"
+          className="absolute -bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-lg border border-gray-300 bg-white px-5 py-1 text-lg font-bold text-green-700 shadow-sm sm:px-10"
         >
           ADD
         </button>

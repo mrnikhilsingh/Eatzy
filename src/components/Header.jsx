@@ -58,7 +58,7 @@ const Header = () => {
               <span>Online Status : {isOnline ? "🟢" : "🔴"}</span>
             </div>
           </div>
-          <div className="hidden items-center justify-center gap-5 md:block md:flex">
+          <div className="hidden items-center justify-center gap-5 md:flex">
             {/* Shopping Cart Icon */}
             <NavLink
               to="/cart"
@@ -92,7 +92,7 @@ const Header = () => {
             </button>
           </div>
           {/* Mobile menu button */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center md:hidden">
             {/* Shopping Cart Icon Mobile */}
             <NavLink
               to="/cart"

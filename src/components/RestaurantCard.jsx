@@ -18,17 +18,17 @@ const RestaurantCard = ({ restaurant }) => {
   const nameEncoded = name.split(" ").join("-");
 
   return (
-    <div className="w-[240px] overflow-hidden rounded-xl bg-white transition-transform hover:scale-95">
+    <div className="overflow-hidden rounded-xl bg-white transition-transform hover:scale-95">
       <Link
         to={`/restaurant/city/gurgaon/${areaNameEncoded}/${nameEncoded}/${id}`}
       >
         {/* Image Section with Gradient Overlay */}
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="relative aspect-[3/2] overflow-hidden rounded-xl">
           {/* Base Image */}
           <img
             src={IMG_CDN_URL + cloudinaryImageId}
             alt={name}
-            className="h-40 w-full object-cover"
+            className="h-full w-full object-cover"
           />
 
           {/* Gradient Overlay */}

@@ -223,9 +223,9 @@ const Cart = () => {
                     <input
                       type="text"
                       placeholder="Enter coupon code"
-                      className="flex-1 rounded-l-md border border-gray-300 px-3 py-2 text-sm focus:ring-2 focus:ring-orange-500 focus:outline-none"
+                      className="flex-3/4 rounded-l-md border border-gray-300 px-2 py-3 text-sm focus:outline-none"
                     />
-                    <button className="cursor-pointer rounded-r-md bg-orange-500 px-4 py-2 text-sm text-white hover:bg-orange-600">
+                    <button className="flex-1/4 cursor-pointer rounded-r-md bg-orange-500 px-3 text-sm text-white hover:bg-orange-600">
                       Apply
                     </button>
                   </div>
