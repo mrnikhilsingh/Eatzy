@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router";
 import { useSelector } from "react-redux";
 
-import logo from "../assets/images/restaurant-logo.jpg";
+import logo from "../assets/images/eatzy-logo.png";
 
 import useOnlineStatus from "../hooks/useOnlineStatus";
 
@@ -25,7 +25,6 @@ const Header = () => {
           {/* Logo */}
           <div className="flex max-w-16 items-center py-1">
             <img className="w-full" src={logo} alt="logo" />
-            {/* <span className="text-xl font-bold">Brand</span> */}
           </div>
 
           {/* Desktop Navigation */}

@@ -1,10 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import Footer from "../components/Footer";
+import { MemoryRouter } from "react-router";
 
 describe("footer component", () => {
   it("should render footer component", () => {
-    render(<Footer />);
+    render(
+      <MemoryRouter>
+        <Footer />
+      </MemoryRouter>,
+    );
 
     const headerText = screen.getByText("Company Name");
 
@@ -12,7 +17,11 @@ describe("footer component", () => {
   });
 
   it("should render all headings", () => {
-    render(<Footer />);
+    render(
+      <MemoryRouter>
+        <Footer />
+      </MemoryRouter>,
+    );
 
     const headings = screen.getAllByRole("heading");
 

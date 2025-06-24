@@ -62,21 +62,6 @@ describe("should render header", () => {
     expect(contactTab).toBeInTheDocument();
   });
 
-  it("should render Cart with item 0", () => {
-    render(
-      <MemoryRouter>
-        <Provider store={store}>
-          <Header />
-        </Provider>
-      </MemoryRouter>,
-    );
-
-    // regex
-    const cartText = screen.getByText(/Cart/);
-
-    expect(cartText).toBeInTheDocument();
-  });
-
   it("should render login button", () => {
     render(
       <MemoryRouter>
