@@ -1,0 +1,369 @@
+{
+  "statusCode": 0,
+  "data": {
+    "statusMessage": "done successfully",
+    "cards": [
+      {
+        "card": {}
+      },
+      {
+        "card": {
+          "card": {
+            "@type": "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget",
+            "id": "top_brands_for_you",
+            "gridElements": {
+              "infoWithStyle": {
+                "@type": "type.googleapis.com/swiggy.presentation.food.v2.FavouriteRestaurantInfoWithStyle",
+                "restaurants": [
+                  {
+                    "info": {
+                      "id": "19864",
+                      "name": "Pizza Hut",
+                      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/7/16/021f5a0e-f223-4fa4-be71-eedb418f4491_19864.jpg",
+                      "locality": "DLF Cyber City",
+                      "areaName": "Dlf Cyber City",
+                      "costForTwo": "₹400 for two",
+                      "cuisines": ["Pizzas"],
+                      "avgRating": 4.6,
+                      "parentId": "721",
+                      "avgRatingString": "4.6",
+                      "totalRatingsString": "14K+",
+                      "sla": {
+                        "deliveryTime": 36,
+                        "lastMileTravel": 5.9,
+                        "serviceability": "SERVICEABLE",
+                        "slaString": "35-40 mins",
+                        "lastMileTravelString": "5.9 km",
+                        "iconType": "ICON_TYPE_EMPTY"
+                      },
+                      "availability": {
+                        "nextCloseTime": "2025-06-29 05:00:00",
+                        "opened": true
+                      },
+                      "badges": {},
+                      "isOpen": true,
+                      "type": "F",
+                      "badgesV2": {
+                        "entityBadges": {
+                          "imageBased": {},
+                          "textBased": {},
+                          "textExtendedBadges": {}
+                        }
+                      },
+                      "aggregatedDiscountInfoV3": {
+                        "header": "₹200 OFF",
+                        "subHeader": "ABOVE ₹999",
+                        "discountTag": "FLAT DEAL"
+                      },
+                      "differentiatedUi": {
+                        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        "differentiatedUiMediaDetails": {
+                          "lottie": {},
+                          "video": {}
+                        }
+                      },
+                      "reviewsSummary": {},
+                      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                      "restaurantOfferPresentationInfo": {},
+                      "externalRatings": {
+                        "aggregatedRating": {
+                          "rating": "4.6",
+                          "ratingCount": "1.5K+"
+                        },
+                        "source": "GOOGLE",
+                        "sourceIconImageId": "v1704440323/google_ratings/rating_google_tag"
+                      },
+                      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+                    },
+                    "analytics": {
+                      "context": "seo-data-d17f2f31-4a95-47d5-8858-1ea04aea4591"
+                    },
+                    "cta": {
+                      "link": "https://www.swiggy.com/city/gurgaon/pizza-hut-dlf-cyber-city-rest19864",
+                      "type": "WEBLINK"
+                    }
+                  },
+                  {
+                    "info": {
+                      "id": "765396",
+                      "name": "Olio - The Wood Fired Pizzeria",
+                      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2025/6/17/4dda0d9b-12b9-43f3-b08e-ee6824dd7489_765396.JPG",
+                      "locality": "ADJACENT IVY APARTMENTS",
+                      "areaName": "DLF PHASE4",
+                      "costForTwo": "₹300 for two",
+                      "cuisines": [
+                        "Pizzas",
+                        "Pastas",
+                        "Italian",
+                        "Fast Food",
+                        "Snacks",
+                        "Beverages",
+                        "Desserts"
+                      ],
+                      "avgRating": 4.3,
+                      "parentId": "11633",
+                      "avgRatingString": "4.3",
+                      "totalRatingsString": "1.6K+",
+                      "sla": {
+                        "deliveryTime": 51,
+                        "lastMileTravel": 7.8,
+                        "serviceability": "SERVICEABLE",
+                        "slaString": "50-55 mins",
+                        "lastMileTravelString": "7.8 km",
+                        "iconType": "ICON_TYPE_EMPTY"
+                      },
+                      "availability": {
+                        "nextCloseTime": "2025-06-29 06:00:00",
+                        "opened": true
+                      },
+                      "badges": {
+                        "imageBadges": [
+                          {
+                            "imageId": "newg.png",
+                            "description": "Gourmet"
+                          }
+                        ]
+                      },
+                      "isOpen": true,
+                      "type": "F",
+                      "badgesV2": {
+                        "entityBadges": {
+                          "imageBased": {
+                            "badgeObject": [
+                              {
+                                "attributes": {
+                                  "description": "Gourmet",
+                                  "imageId": "newg.png"
+                                }
+                              }
+                            ]
+                          },
+                          "textBased": {},
+                          "textExtendedBadges": {}
+                        }
+                      },
+                      "aggregatedDiscountInfoV3": {
+                        "header": "ITEMS",
+                        "subHeader": "AT ₹99"
+                      },
+                      "differentiatedUi": {
+                        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        "differentiatedUiMediaDetails": {
+                          "lottie": {},
+                          "video": {}
+                        }
+                      },
+                      "reviewsSummary": {},
+                      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                      "restaurantOfferPresentationInfo": {},
+                      "externalRatings": {
+                        "aggregatedRating": {
+                          "rating": "--"
+                        }
+                      },
+                      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+                    },
+                    "analytics": {
+                      "context": "seo-data-d17f2f31-4a95-47d5-8858-1ea04aea4591"
+                    },
+                    "cta": {
+                      "link": "https://www.swiggy.com/city/gurgaon/olio-the-wood-fired-pizzeria-adjacent-ivy-apartments-dlf-phase4-rest765396",
+                      "type": "WEBLINK"
+                    }
+                  },
+                  {
+                    "info": {
+                      "id": "630584",
+                      "name": "SLYCE PIZZA",
+                      "cloudinaryImageId": "7499af00997384769a3e113ba843536d",
+                      "locality": "Nathupur",
+                      "areaName": "Dlf Phase 3",
+                      "costForTwo": "₹600 for two",
+                      "cuisines": ["Pizzas", "Italian", "Fast Food"],
+                      "avgRating": 4.3,
+                      "parentId": "321813",
+                      "avgRatingString": "4.3",
+                      "totalRatingsString": "1.0K+",
+                      "sla": {
+                        "deliveryTime": 33,
+                        "lastMileTravel": 4,
+                        "serviceability": "SERVICEABLE",
+                        "slaString": "30-35 mins",
+                        "lastMileTravelString": "4.0 km",
+                        "iconType": "ICON_TYPE_EMPTY"
+                      },
+                      "availability": {
+                        "nextCloseTime": "2025-06-29 04:00:00",
+                        "opened": true
+                      },
+                      "badges": {
+                        "imageBadges": [
+                          {
+                            "imageId": "newg.png",
+                            "description": "Gourmet"
+                          }
+                        ]
+                      },
+                      "isOpen": true,
+                      "type": "F",
+                      "badgesV2": {
+                        "entityBadges": {
+                          "imageBased": {
+                            "badgeObject": [
+                              {
+                                "attributes": {
+                                  "description": "Gourmet",
+                                  "imageId": "newg.png"
+                                }
+                              }
+                            ]
+                          },
+                          "textBased": {},
+                          "textExtendedBadges": {}
+                        }
+                      },
+                      "aggregatedDiscountInfoV3": {
+                        "header": "50% OFF",
+                        "discountTag": "FLAT DEAL"
+                      },
+                      "differentiatedUi": {
+                        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        "differentiatedUiMediaDetails": {
+                          "lottie": {},
+                          "video": {}
+                        }
+                      },
+                      "reviewsSummary": {},
+                      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                      "restaurantOfferPresentationInfo": {},
+                      "externalRatings": {
+                        "aggregatedRating": {
+                          "rating": "--"
+                        }
+                      },
+                      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+                    },
+                    "analytics": {
+                      "context": "seo-data-d17f2f31-4a95-47d5-8858-1ea04aea4591"
+                    },
+                    "cta": {
+                      "link": "https://www.swiggy.com/city/gurgaon/slyce-pizza-nathupur-dlf-phase-3-rest630584",
+                      "type": "WEBLINK"
+                    }
+                  },
+                  {
+                    "info": {
+                      "id": "19097",
+                      "name": "Faasos - Wraps, Rolls & Shawarma",
+                      "cloudinaryImageId": "RX_THUMBNAIL/IMAGES/VENDOR/2024/7/28/f1acf41c-4b1b-4313-9840-cd13147d76ce_19097.JPG",
+                      "locality": "Sikandepur",
+                      "areaName": "Sikandarpur",
+                      "costForTwo": "₹200 for two",
+                      "cuisines": [
+                        "Kebabs",
+                        "Fast Food",
+                        "Snacks",
+                        "American",
+                        "Healthy Food",
+                        "Desserts",
+                        "Beverages"
+                      ],
+                      "avgRating": 4.6,
+                      "parentId": "21809",
+                      "avgRatingString": "4.6",
+                      "totalRatingsString": "23K+",
+                      "sla": {
+                        "deliveryTime": 33,
+                        "lastMileTravel": 4.9,
+                        "serviceability": "SERVICEABLE",
+                        "slaString": "30-35 mins",
+                        "lastMileTravelString": "4.9 km",
+                        "iconType": "ICON_TYPE_EMPTY"
+                      },
+                      "availability": {
+                        "nextCloseTime": "2025-06-28 23:59:00",
+                        "opened": true
+                      },
+                      "badges": {
+                        "imageBadges": [
+                          {
+                            "imageId": "Rxawards/_CATEGORY-Rolls.png",
+                            "description": "Delivery!"
+                          }
+                        ]
+                      },
+                      "isOpen": true,
+                      "type": "F",
+                      "badgesV2": {
+                        "entityBadges": {
+                          "imageBased": {
+                            "badgeObject": [
+                              {
+                                "attributes": {
+                                  "description": "Delivery!",
+                                  "imageId": "Rxawards/_CATEGORY-Rolls.png"
+                                }
+                              }
+                            ]
+                          },
+                          "textBased": {},
+                          "textExtendedBadges": {}
+                        }
+                      },
+                      "aggregatedDiscountInfoV3": {
+                        "header": "ITEMS",
+                        "subHeader": "AT ₹29"
+                      },
+                      "differentiatedUi": {
+                        "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+                        "differentiatedUiMediaDetails": {
+                          "lottie": {},
+                          "video": {}
+                        }
+                      },
+                      "reviewsSummary": {},
+                      "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+                      "restaurantOfferPresentationInfo": {},
+                      "externalRatings": {
+                        "aggregatedRating": {
+                          "rating": "--"
+                        }
+                      },
+                      "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+                    },
+                    "analytics": {
+                      "context": "seo-data-9c848292-3fe2-4f71-8ee9-d92e66081f52"
+                    },
+                    "cta": {
+                      "link": "https://www.swiggy.com/city/gurgaon/faasos-wraps-rolls-and-shawarma-sikandepur-sikandarpur-rest19097",
+                      "type": "WEBLINK"
+                    }
+                  }
+                ],
+                "theme": "Restaurant_Group_WebView_SEO_PB_Theme",
+                "widgetType": "WIDGET_TYPE_POPULAR_BRANDS",
+                "style": {
+                  "width": {
+                    "type": "TYPE_RELATIVE",
+                    "value": 0.41111112,
+                    "reference": "RELATIVE_DIMENSION_REFERENCE_DEVICE_WIDTH"
+                  },
+                  "height": {
+                    "type": "TYPE_RELATIVE",
+                    "value": 0.7027027,
+                    "reference": "RELATIVE_DIMENSION_REFERENCE_WIDTH"
+                  },
+                  "layoutAlignment": "LAYOUT_ALIGNMENT_LEFT"
+                },
+                "collectionId": "84124"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "firstOffsetRequest": true,
+    "cacheExpiryTime": 240,
+    "nextFetch": 1
+  }
+}

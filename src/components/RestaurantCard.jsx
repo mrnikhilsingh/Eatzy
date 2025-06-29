@@ -18,7 +18,10 @@ const RestaurantCard = ({ restaurant }) => {
   const nameEncoded = name.split(" ").join("-");
 
   return (
-    <div className="overflow-hidden rounded-xl bg-white transition-transform hover:scale-95">
+    <div
+      data-testid="resCard"
+      className="overflow-hidden rounded-xl bg-white transition-transform hover:scale-95"
+    >
       <Link
         to={`/restaurant/city/gurgaon/${areaNameEncoded}/${nameEncoded}/${id}`}
       >
