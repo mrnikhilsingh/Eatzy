@@ -87,7 +87,7 @@ const RestaurantDetails = () => {
         </div>
 
         {/* Recommended Items Accordion */}
-        <div className="mt-10 bg-white">
+        <div data-testid="resCategories" className="mt-10 bg-white">
           {itemCategories.map((itemCategory, index) => {
             return (
               <RestaurantCategory

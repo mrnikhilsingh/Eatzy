@@ -78,7 +78,10 @@ const Header = () => {
               </svg>
               {/* Cart Item Count Badge */}
               {cartItems.length > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-orange-700 text-xs font-bold text-white">
+                <span
+                  data-testid="cartItemsCount"
+                  className="absolute -top-1 -right-1 flex h-5 w-5 min-w-[20px] items-center justify-center rounded-full bg-orange-700 text-xs font-bold text-white"
+                >
                   {cartItems.length > 99 ? "99+" : cartItems.length}
                 </span>
               )}

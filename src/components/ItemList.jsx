@@ -107,7 +107,7 @@ const ItemList = ({ items, isReadMore }) => {
         {/* item description */}
         <div className="flex items-end">
           <p
-            className={`${isReadMore ? "" : "line-clamp-2"} font-semibold text-gray-500`}
+            className={`${isReadMore ? "" : "line-clamp-2"} font-semibold break-all text-gray-500`}
           >
             {item?.card?.info?.description}
           </p>

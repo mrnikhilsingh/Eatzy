@@ -7,8 +7,8 @@ const Contact = () => {
         out to us directly.
       </p>
       <form
+        netlify
         name="Eatzy-Contact-Form"
-        data-netlify="true"
         method="POST"
         className="w-full max-w-md space-y-4 rounded-lg bg-white p-6 shadow-md"
       >
