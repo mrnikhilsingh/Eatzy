@@ -29,7 +29,8 @@ const Cart = () => {
     dispatch(incrementQuantity(id));
   };
 
-  const handleDecrementQuantity = (id) => {
+  const handleDecrementQuantity = (id, quantity) => {
+    if (quantity <= 1) dispatch(removeItem(id));
     dispatch(decrementQuantity(id));
   };
 
@@ -83,7 +84,10 @@ const Cart = () => {
                           <div className="flex items-center overflow-hidden rounded-md border border-gray-300">
                             <button
                               onClick={() =>
-                                handleDecrementQuantity(item?.card?.info?.id)
+                                handleDecrementQuantity(
+                                  item?.card?.info?.id,
+                                  item?.card?.info?.quantity,
+                                )
                               }
                               className="cursor-pointer px-3 py-1 text-orange-500 hover:bg-orange-50"
                             >
@@ -102,7 +106,9 @@ const Cart = () => {
                             </button>
                           </div>
                           <button
-                            onClick={() => handleRemoveItem(item.card.info.id)}
+                            onClick={() =>
+                              handleRemoveItem(item?.card?.info?.id)
+                            }
                             className="cursor-pointer text-sm text-red-500 hover:text-red-600"
                           >
                             Remove

@@ -43,7 +43,7 @@ const RestaurantCard = ({ restaurant }) => {
             }}
           >
             {/* Promotional Text */}
-            <div className="absolute bottom-1 left-2 px-2 text-lg font-bold text-white">
+            <div className="absolute bottom-1 left-2 px-2 font-bold text-white sm:text-lg">
               {aggregatedDiscountInfoV3?.header}{" "}
               {aggregatedDiscountInfoV3?.subHeader}
             </div>
@@ -54,11 +54,12 @@ const RestaurantCard = ({ restaurant }) => {
         <div className="p-2">
           <div className="flex items-start justify-between">
             <div>
-              <h3 className="text-lg font-bold text-gray-800">{name}</h3>
+              {/* Restaurant Name */}
+              <h3 className="font-bold text-gray-800 sm:text-lg">{name}</h3>
 
               {/* Rating and Delivery Time */}
               <div className="mt-1 flex items-center gap-1">
-                <div className="flex items-center rounded-sm bg-green-600 px-1 text-xs text-white">
+                <div className="flex items-center rounded-sm bg-green-600 px-0.5 text-xs text-white sm:px-1">
                   <span className="text-xs">{avgRating}</span>
                   <span className="text-xs">★</span>
                 </div>
@@ -67,12 +68,14 @@ const RestaurantCard = ({ restaurant }) => {
               </div>
 
               {/* Restaurant Categories */}
-              <p className="text-md mt-1 font-semibold text-gray-500">
+              <p className="mt-1 text-sm font-semibold text-gray-500 sm:text-base">
                 {cuisines.length > 2
                   ? `${cuisines.slice(0, 2).join(", ")}, ...`
                   : cuisines.join(", ")}
               </p>
-              <p className="text-md font-semibold text-gray-500">{areaName}</p>
+              <p className="text-sm font-semibold text-gray-500 sm:text-base">
+                {areaName}
+              </p>
             </div>
           </div>
         </div>

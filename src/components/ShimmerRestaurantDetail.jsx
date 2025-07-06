@@ -1,8 +1,8 @@
 const ShimmerRestaurantDetail = () => {
   return (
-    <div className="mx-auto md:max-w-3xl">
+    <div id="restaurant-details-shimmer" className="mx-auto md:max-w-3xl">
       {/* Restaurant Name */}
-      <div className="relative h-9 w-md overflow-hidden rounded-md bg-gray-200">
+      <div className="relative h-9 overflow-hidden rounded-md bg-gray-200 sm:w-md">
         <div className="absolute inset-0">
           <div
             className="h-full w-full animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
@@ -15,7 +15,7 @@ const ShimmerRestaurantDetail = () => {
       </div>
       {/* Restaurant Details */}
       <div className="mt-5 rounded-lg bg-white p-4 shadow-sm">
-        <div className="relative h-5 w-xs overflow-hidden rounded-md bg-gray-200">
+        <div className="relative h-5 overflow-hidden rounded-md bg-gray-200 sm:w-xs">
           <div className="absolute inset-0">
             <div
               className="h-full w-full animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
@@ -51,10 +51,10 @@ const ShimmerRestaurantDetail = () => {
       </div>
 
       {/* Recommended Items */}
-      <div className="mt-10 flex justify-between gap-10 rounded-lg bg-white p-4 shadow-sm">
+      <div className="mt-8 flex flex-col justify-between gap-5 rounded-lg bg-white p-4 shadow-sm sm:mt-10 sm:flex-row sm:gap-10">
         {/* Items details */}
         <div>
-          <div className="relative h-7 w-sm overflow-hidden rounded-md bg-gray-200">
+          <div className="relative h-7 overflow-hidden rounded-md bg-gray-200 sm:w-sm">
             <div className="absolute inset-0">
               <div
                 className="h-full w-full animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"
@@ -101,7 +101,7 @@ const ShimmerRestaurantDetail = () => {
         </div>
         {/* item image */}
         <div>
-          <div className="relative h-full w-3xs overflow-hidden rounded-md bg-gray-200">
+          <div className="relative h-40 w-3xs overflow-hidden rounded-md bg-gray-200 sm:h-full">
             <div className="absolute inset-0">
               <div
                 className="h-full w-full animate-pulse bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200"

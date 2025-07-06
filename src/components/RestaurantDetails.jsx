@@ -91,7 +91,7 @@ const RestaurantDetails = () => {
           {itemCategories.map((itemCategory, index) => {
             return (
               <RestaurantCategory
-                key={itemCategory.card.card.categoryId}
+                key={itemCategory.card.card.title}
                 itemCategory={itemCategory}
                 activeIndex={activeIndex === index}
                 setActiveIndex={() =>

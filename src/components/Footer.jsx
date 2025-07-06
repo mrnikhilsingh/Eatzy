@@ -7,13 +7,13 @@ const Footer = () => {
     <footer className="bg-gray-800 py-8 text-white">
       <div className="mx-auto max-w-6xl px-4">
         {/* Footer Content Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4 md:gap-0">
+        <div className="grid grid-cols-1 gap-4 sm:gap-8 md:grid-cols-4 md:gap-0">
           {/* Company Info */}
           <div className="col-span-1">
-            <h3 className="mb-4 text-xl font-bold">Company Name</h3>
+            <h3 className="mb-4 text-xl font-bold">Eatzy</h3>
             <p className="mb-2 text-gray-300">123 Street Address</p>
             <p className="mb-2 text-gray-300">City, State 12345</p>
-            <p className="text-gray-300">contact@example.com</p>
+            <p className="text-gray-300">contact@eatzy.com</p>
           </div>
 
           {/* Quick Links */}

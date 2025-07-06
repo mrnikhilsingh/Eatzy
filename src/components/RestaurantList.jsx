@@ -52,7 +52,7 @@ const RestaurantList = () => {
         className="mx-auto mt-8 grid max-w-[1060px] grid-cols-2 flex-wrap justify-between gap-x-5 gap-y-5 sm:grid-cols-3 sm:gap-x-3 md:grid-cols-4 lg:gap-x-8"
       >
         {!restaurants
-          ? randomArray.map((el, index) => {
+          ? randomArray.map((_, index) => {
               return <ShimmerCard key={index} />;
             })
           : filteredRestaurants?.map((restaurant) => {
