@@ -11,7 +11,7 @@ describe("footer component", () => {
       </MemoryRouter>,
     );
 
-    const headerText = screen.getByText("Company Name");
+    const headerText = screen.getByText("Eatzy");
 
     expect(headerText).toBeInTheDocument();
   });

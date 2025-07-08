@@ -7,6 +7,7 @@ import {
   decrementQuantity,
   removeItem,
 } from "../store/cartSlice";
+import { toast } from "sonner";
 
 const ItemList = ({ items, isReadMore }) => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const ItemList = ({ items, isReadMore }) => {
 
   const handleClick = (item) => {
     dispatch(addItem(item));
+    toast.success("Item added to cart.");
   };
 
   const handleIncrementQuantity = (id) => {
