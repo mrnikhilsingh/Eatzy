@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { IMG_CDN_URL } from "../lib/constants";
 
-const RestaurantCard = ({ restaurant }) => {
+const RestaurantCard = ({ restaurant, isChains = false }) => {
   const {
     id,
     name,
@@ -17,10 +17,17 @@ const RestaurantCard = ({ restaurant }) => {
   const areaNameEncoded = areaName.split(" ").join("-");
   const nameEncoded = name.split(" ").join("-");
 
+  const style =
+    "max-w-40 sm:max-w-60 shrink-0 overflow-hidden rounded-xl bg-white transition-transform hover:scale-95";
+
   return (
     <div
       data-testid="resCard"
-      className="overflow-hidden rounded-xl bg-white transition-transform hover:scale-95"
+      className={
+        isChains
+          ? style
+          : "overflow-hidden rounded-xl bg-white transition-transform hover:scale-95"
+      }
     >
       <Link
         to={`/restaurant/city/gurgaon/${areaNameEncoded}/${nameEncoded}/${id}`}

@@ -5,12 +5,20 @@ import ShimmerCard from "./ShimmerCard";
 import SearchButton from "./SearchButton";
 
 import useRestaurant from "../hooks/useRestaurant";
+import { WHATS_ON_YOUR_MIND_IMG_CDN } from "../lib/constants";
 
 const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
 
-  const { restaurants, filteredRestaurants, setFilteredRestaurants } =
-    useRestaurant();
+  const {
+    data,
+    restaurants,
+    filteredRestaurants,
+    setFilteredRestaurants,
+    whatsOnYourMind,
+    topRestaurantChains,
+    error,
+  } = useRestaurant();
 
   // random array to multiply and map shimmer card
   const randomArray = new Array(8).fill("");
@@ -23,31 +31,73 @@ const RestaurantList = () => {
     setFilteredRestaurants(filteredRestaurants);
   };
 
+  // console.log("data", data);
+
   return (
     <>
-      <div className="mx-auto flex max-w-[1060px] flex-col-reverse gap-8 sm:flex-row sm:items-center sm:justify-between sm:gap-0">
-        <div>
-          <h1 className="font-bold text-gray-800 md:text-xl">
-            Restaurants with online food delivery
+      {/* what's on your mind */}
+
+      {whatsOnYourMind && (
+        <section id="what's on your mind" className="mx-auto max-w-[1060px]">
+          <h1 className="font-bold text-gray-800 md:text-2xl">
+            What's on your mind?
           </h1>
-          <button
-            onClick={handleClick}
-            className="mt-3 cursor-pointer rounded-md bg-orange-500 px-3 py-1 font-semibold text-white transition-colors hover:bg-orange-600 md:px-4 md:py-1.5"
-          >
-            Top Rated
-          </button>
+          <div className="mt-2 grid grid-flow-col grid-rows-2 overflow-hidden overflow-x-auto sm:grid-rows-1">
+            {whatsOnYourMind?.map((item) => (
+              <div key={item?.id} className="w-28 snap-center sm:w-36">
+                <img
+                  className="h-full w-full mix-blend-darken"
+                  src={WHATS_ON_YOUR_MIND_IMG_CDN + item?.imageId}
+                  alt={item?.action?.text}
+                />
+              </div>
+            ))}
+          </div>
+          <hr className="mx-auto my-10 h-0.5 max-w-[1060px] rounded-md border-0 bg-gray-300"></hr>
+        </section>
+      )}
+
+      {/* top restaurant chains */}
+
+      <section id="top-restaurant-chains" className="mx-auto max-w-[1060px]">
+        <h1 className="font-bold text-gray-800 md:text-2xl">
+          {data?.cards[1]?.card?.card?.header?.title}
+        </h1>
+        <div className="mt-5 flex flex-nowrap gap-x-8 overflow-hidden overflow-x-auto">
+          {!topRestaurantChains
+            ? randomArray.map((_, index) => {
+                return <ShimmerCard key={index} />;
+              })
+            : topRestaurantChains?.map((restaurant) => (
+                <RestaurantCard
+                  restaurant={restaurant}
+                  key={restaurant.info.id}
+                  isChains={true}
+                />
+              ))}
         </div>
-        <hr className="h-0.5 border-0 bg-gray-200 sm:hidden"></hr>
+      </section>
 
-        <SearchButton
-          searchText={searchText}
-          setSearchText={setSearchText}
-          restaurants={restaurants}
-          setFilteredRestaurants={setFilteredRestaurants}
-        />
-      </div>
+      <hr className="mx-auto my-10 h-0.5 max-w-[1060px] rounded-md border-0 bg-gray-300"></hr>
 
-      <div
+      {/* restaurant with online food delivery */}
+      <section
+        id="restaurant-with-onine-food-delivery"
+        className="mx-auto mt-10 max-w-[1060px] gap-8"
+      >
+        <h1 className="font-bold text-gray-800 md:text-2xl">
+          {data?.cards[2]?.card?.card?.title}
+        </h1>
+        <button
+          onClick={handleClick}
+          className="mt-3 cursor-pointer rounded-md bg-orange-500 px-3 py-1 font-semibold text-white transition-colors hover:bg-orange-600 md:px-4 md:py-1.5"
+        >
+          Top Rated
+        </button>
+      </section>
+
+      {/* main restaurant cards */}
+      <section
         id="restaurant-list"
         className="mx-auto mt-8 grid max-w-[1060px] grid-cols-2 flex-wrap justify-between gap-x-5 gap-y-5 sm:grid-cols-3 sm:gap-x-3 md:grid-cols-4 lg:gap-x-8"
       >
@@ -63,7 +113,7 @@ const RestaurantList = () => {
                 />
               );
             })}
-      </div>
+      </section>
     </>
   );
 };
