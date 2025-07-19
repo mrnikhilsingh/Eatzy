@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import RestaurantCard from "./RestaurantCard";
 import ShimmerCard from "./ShimmerCard";
-import SearchButton from "./SearchButton";
 
 import useRestaurant from "../hooks/useRestaurant";
 import { WHATS_ON_YOUR_MIND_IMG_CDN } from "../lib/constants";
 
 const RestaurantList = () => {
   const [searchText, setSearchText] = useState("");
+
+  const { latitude, longitude } = useSelector((store) => store.location);
 
   const {
     data,
@@ -18,7 +20,7 @@ const RestaurantList = () => {
     whatsOnYourMind,
     topRestaurantChains,
     error,
-  } = useRestaurant();
+  } = useRestaurant({ latitude, longitude });
 
   // random array to multiply and map shimmer card
   const randomArray = new Array(8).fill("");
@@ -30,8 +32,6 @@ const RestaurantList = () => {
     );
     setFilteredRestaurants(filteredRestaurants);
   };
-
-  // console.log("data", data);
 
   return (
     <>

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-import { RESTAURANT_API_URL } from "../lib/constants";
+import getBaseURL from "../utils/getBaseURL";
 
-const useRestaurant = () => {
+const useRestaurant = ({ latitude, longitude }) => {
   const [data, setData] = useState(null);
   const [whatsOnYourMind, setWhatsOnYourMind] = useState(null);
   const [topRestaurantChains, setTopRestaurantChains] = useState(null);
@@ -11,13 +11,18 @@ const useRestaurant = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const [error, setError] = useState(null);
 
+  const BASE_URL = getBaseURL();
+
   useEffect(() => {
+    if (!latitude && !longitude) return;
     fetchRestaurants();
-  }, []);
+  }, [latitude, longitude]);
 
   async function fetchRestaurants() {
     try {
-      const response = await axios.get(RESTAURANT_API_URL);
+      const response = await axios.get(
+        `${BASE_URL}/dapi/restaurants/list/v5?lat=${latitude}&lng=${longitude}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`,
+      );
       const data = response.data;
 
       setData(data?.data);
