@@ -8,8 +8,6 @@ import useRestaurant from "../hooks/useRestaurant";
 import { WHATS_ON_YOUR_MIND_IMG_CDN } from "../lib/constants";
 
 const RestaurantList = () => {
-  const [searchText, setSearchText] = useState("");
-
   const { latitude, longitude } = useSelector((store) => store.location);
 
   const {
@@ -44,7 +42,7 @@ const RestaurantList = () => {
           </h1>
           <div className="mt-2 grid grid-flow-col grid-rows-2 overflow-hidden overflow-x-auto sm:grid-rows-1">
             {whatsOnYourMind?.map((item) => (
-              <div key={item?.id} className="w-28 snap-center sm:w-36">
+              <div key={item?.id} className="w-24 snap-center sm:w-36">
                 <img
                   className="h-full w-full mix-blend-darken"
                   src={WHATS_ON_YOUR_MIND_IMG_CDN + item?.imageId}

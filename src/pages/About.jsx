@@ -22,8 +22,7 @@ const About = () => {
       </div>
       <div className="text-gray-500">
         <p>
-          <span className="font-semibold">Contact:</span>{" "}
-          support@swiggyclone.com
+          <span className="font-semibold">Contact:</span> support@eatzy.com
         </p>
         <p>
           <span className="font-semibold">Location:</span> India

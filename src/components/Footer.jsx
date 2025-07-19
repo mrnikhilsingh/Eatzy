@@ -13,7 +13,7 @@ const Footer = () => {
             <h3 className="mb-4 text-xl font-bold">Eatzy</h3>
             <p className="mb-2 text-gray-300">123 Street Address</p>
             <p className="mb-2 text-gray-300">City, State 12345</p>
-            <p className="text-gray-300">contact@eatzy.com</p>
+            <p className="text-gray-300">support@eatzy.com</p>
           </div>
 
           {/* Quick Links */}

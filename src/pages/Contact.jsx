@@ -55,7 +55,7 @@ const Contact = () => {
       </form>
       <div className="mt-8 text-center text-gray-500">
         <p>
-          <span className="font-semibold">Email:</span> contact@example.com
+          <span className="font-semibold">Email:</span> support@eatzy.com
         </p>
         <p>
           <span className="font-semibold">Phone:</span> (123) 456-7890
