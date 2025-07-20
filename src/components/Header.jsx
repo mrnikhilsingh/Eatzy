@@ -149,26 +149,26 @@ const Header = () => {
       </div>
 
       <nav className="relative shadow-md">
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="mx-auto max-w-7xl px-2 sm:px-4">
           <div className="flex items-center justify-between">
-            <div className="flex shrink-0 items-center gap-x-5 sm:gap-x-8">
+            <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-8">
               {/* Logo */}
-              <div className="max-w-14 py-2">
+              <div className="max-w-12 py-2 sm:max-w-14">
                 <img className="w-full" src={logo} alt="logo" />
               </div>
               <div
                 onClick={toggleSidebar}
-                className="group flex max-w-3xs cursor-pointer items-center gap-x-2 text-xs sm:text-base"
+                className="group flex max-w-[150px] cursor-pointer items-center gap-x-2 text-xs sm:max-w-2xs sm:text-base"
               >
-                <p className="font-bold underline decoration-2 underline-offset-8 group-hover:text-orange-500">
+                <p className="line-clamp-1 font-bold underline decoration-2 underline-offset-8 group-hover:text-orange-500">
                   {Object.keys(placeAddr).length === 0
-                    ? "Delhi"
-                    : placeAddr?.main_text.slice(0, 10)}
+                    ? "Gurgaon"
+                    : placeAddr?.main_text.slice(0, 20)}
                 </p>
-                <div className="flex items-center justify-center gap-x-2">
+                <div className="flex items-center justify-center gap-x-1">
                   <p className="line-clamp-1 text-gray-700">
                     {Object.keys(placeAddr).length === 0
-                      ? "Delhi, India"
+                      ? "Gurgaon, India"
                       : placeAddr?.secondary_text.slice(0, 50)}
                   </p>
                   <span className="w-3.5 shrink-0">
@@ -253,7 +253,7 @@ const Header = () => {
               {/* Shopping Cart Icon Mobile */}
               <NavLink
                 to="/cart"
-                className="relative rounded-md px-3 py-2 font-medium transition-all hover:scale-110"
+                className="relative rounded-md py-2 font-medium transition-all hover:scale-110"
               >
                 <svg
                   className="h-6 w-6"

@@ -1,5 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router";
+import { toast } from "sonner";
+import confetti from "canvas-confetti";
+
 import {
   removeItem,
   incrementQuantity,
@@ -7,10 +10,8 @@ import {
   clearCart,
 } from "../store/cartSlice";
 
-import { toast } from "sonner";
 import { IMG_CDN_URL } from "../lib/constants";
 import emptyCartImg from "../assets/images/empty-cart-image.png";
-import confetti from "canvas-confetti";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,11 @@ const Cart = () => {
 
   const subtotal = cartItems.reduce(
     (sum, item) =>
-      sum + (item?.card?.info?.price / 100) * item?.card?.info?.quantity,
+      sum +
+      (item?.card?.info?.finalPrice / 100 ||
+        item?.card?.info?.price / 100 ||
+        item?.card?.info?.defaultPrice / 100) *
+        item?.card?.info?.quantity,
     0,
   );
   const deliveryFee = 29;
@@ -50,14 +55,22 @@ const Cart = () => {
 
   const handlePlaceOrder = () => {
     dispatch(clearCart());
+
     toast.success("Your order placed successfully");
+    // scroll to top
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+
+    // show confetti effect
     confetti({
       particleCount: 300,
       spread: 70,
       origin: { y: 1, x: 1 },
       angle: 130,
     });
-
     confetti({
       particleCount: 300,
       spread: 70,
@@ -133,7 +146,10 @@ const Cart = () => {
                               )}
                             </div>
                             <p className="font-semibold text-gray-800">
-                              ₹{item?.card?.info?.price / 100}
+                              ₹
+                              {item?.card?.info?.finalPrice / 100 ||
+                                item?.card?.info?.price / 100 ||
+                                item?.card?.info?.defaultPrice / 100}
                             </p>
                           </div>
 

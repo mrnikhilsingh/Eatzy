@@ -4,13 +4,20 @@ import { useParams } from "react-router";
 import ShimmerRestaurantDetail from "./ShimmerRestaurantDetail";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useSelector } from "react-redux";
 
 const RestaurantDetails = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const { id } = useParams();
 
+  const { latitude, longitude } = useSelector((store) => store.location);
+
   // fetch restaurant menu data using custom hook
-  const [restaurant, categories] = useRestaurantMenu(id);
+  const [restaurant, categories] = useRestaurantMenu({
+    id,
+    latitude,
+    longitude,
+  });
 
   const itemCategories = categories?.filter((category) => {
     const type = category.card.card["@type"];
