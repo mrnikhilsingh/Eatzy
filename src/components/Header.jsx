@@ -22,7 +22,8 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart);
 
   // fetch place lists based on search input
-  const { placesList } = useFetchPlaces(debouncedInput);
+  const { placesList, isLoading, setIsLoading, placeError } =
+    useFetchPlaces(debouncedInput);
   const { latitude, longitude } = useFetchPlaceAddr(placeID);
 
   useEffect(() => {
@@ -60,11 +61,17 @@ const Header = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  // set place id
+  // handle place change
   const handleClick = (id, addr) => {
     setPlaceID(id);
     setPlaceAddr(addr);
     setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  // handle input change when user searches for place
+  const handleInputChange = (e) => {
+    setIsLoading(true);
+    setSearchInput(e.target.value);
   };
 
   return (
@@ -100,15 +107,37 @@ const Header = () => {
         >
           <input
             value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
+            onChange={handleInputChange}
             type="text"
             placeholder="Search for area, street name..."
             className="h-full w-full px-3 outline-none"
           />
         </div>
-
         <div id="suggested_places" className="mt-8 p-4">
-          {placesList &&
+          {isLoading ? (
+            <div className="mt-15 flex flex-row items-center justify-center gap-2">
+              <div className="h-4 w-4 animate-bounce rounded-full bg-orange-500"></div>
+              <div className="h-4 w-4 animate-bounce rounded-full bg-orange-500 [animation-delay:-.3s]"></div>
+              <div className="h-4 w-4 animate-bounce rounded-full bg-orange-500 [animation-delay:-.5s]"></div>
+            </div>
+          ) : placeError ? (
+            <p className="flex items-center rounded-lg border border-red-300 bg-red-50 px-4 py-2 font-semibold text-red-800">
+              <svg
+                className="shirnk-0 me-2 mt-1 h-4 w-4 justify-center"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
+              </svg>
+              <span>
+                {placeError && placeError.message
+                  ? placeError.message
+                  : "An error occurred!"}
+              </span>
+            </p>
+          ) : (
+            placesList &&
             placesList?.map((place, index) => {
               const isLastIndex = index === placesList?.length - 1;
               return (
@@ -144,7 +173,8 @@ const Header = () => {
                   </div>
                 </div>
               );
-            })}
+            })
+          )}
         </div>
       </div>
 

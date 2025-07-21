@@ -14,6 +14,14 @@ const useRestaurant = ({ latitude, longitude }) => {
   const BASE_URL = getBaseURL();
 
   useEffect(() => {
+    // reset all the states after coordinates change
+    setData(null);
+    setWhatsOnYourMind(null);
+    setTopRestaurantChains(null);
+    setRestaurants(null);
+    setFilteredRestaurants(null);
+    setError(null);
+    // if coordinates not available don't fetch
     if (!latitude && !longitude) return;
     fetchRestaurants();
   }, [latitude, longitude]);
