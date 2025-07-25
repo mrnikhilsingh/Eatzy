@@ -10,6 +10,7 @@ const useFetchPlaces = (place) => {
   const BASE_URL = getBaseURL();
 
   useEffect(() => {
+    setPlaceError(null);
     if (!place) {
       setIsLoading(false);
       setPlacesList(null);

@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { IMG_CDN_URL } from "../lib/constants";
+import { useSelector } from "react-redux";
 
 const RestaurantCard = ({ restaurant, isChains = false }) => {
   const {
@@ -12,6 +13,9 @@ const RestaurantCard = ({ restaurant, isChains = false }) => {
     sla,
     cuisines,
   } = restaurant.info;
+
+  // get city name from the redux store
+  const cityName = useSelector((store) => store.city);
 
   // Convert spaces to '-'
   const areaNameEncoded = areaName.split(" ").join("-");
@@ -30,7 +34,7 @@ const RestaurantCard = ({ restaurant, isChains = false }) => {
       }
     >
       <Link
-        to={`/restaurant/city/gurgaon/${areaNameEncoded}/${nameEncoded}/${id}`}
+        to={`/restaurant/city/${cityName}/${areaNameEncoded}/${nameEncoded}/${id}`}
       >
         {/* Image Section with Gradient Overlay */}
         <div className="relative aspect-[3/2] overflow-hidden rounded-xl">

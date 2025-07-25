@@ -16,7 +16,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "restaurant/city/gurgaon/:areaName/:restaurantName/:id",
+        path: "restaurant/city/:cityName/:areaName/:restaurantName/:id",
         element: <RestaurantDetails />,
       },
       {
