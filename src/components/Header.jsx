@@ -178,7 +178,7 @@ const Header = () => {
         </div>
       </div>
 
-      <nav className="relative shadow-md">
+      <nav className="fixed top-0 left-0 z-20 w-full border-b border-white/30 bg-white/40 shadow-md backdrop-blur-lg">
         <div className="mx-auto max-w-7xl px-2 sm:px-4">
           <div className="flex items-center justify-between">
             <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-8">
