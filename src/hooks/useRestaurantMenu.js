@@ -5,6 +5,7 @@ import getBaseURL from "../utils/getBaseURL";
 const useRestaurantMenu = ({ id, latitude, longitude }) => {
   const [restaurant, setRestaurant] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [deals, setDeals] = useState(null);
 
   const BASE_URL = getBaseURL();
 
@@ -23,12 +24,15 @@ const useRestaurantMenu = ({ id, latitude, longitude }) => {
       setCategories(
         data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards,
       );
+      setDeals(
+        data?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers,
+      );
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   }
 
-  return [restaurant, categories];
+  return [restaurant, categories, deals];
 };
 
 export default useRestaurantMenu;

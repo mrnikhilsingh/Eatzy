@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 import ShimmerRestaurantDetail from "./ShimmerRestaurantDetail";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
-import { useSelector } from "react-redux";
+import { IMG_CDN_URL } from "../lib/constants";
 
 const RestaurantDetails = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -13,7 +14,7 @@ const RestaurantDetails = () => {
   const { latitude, longitude } = useSelector((store) => store.location);
 
   // fetch restaurant menu data using custom hook
-  const [restaurant, categories] = useRestaurantMenu({
+  const [restaurant, categories, deals] = useRestaurantMenu({
     id,
     latitude,
     longitude,
@@ -33,7 +34,7 @@ const RestaurantDetails = () => {
   return (
     <div>
       <div className="mx-auto md:max-w-3xl">
-        {/* Restaurant Details */}
+        {/* Restaurant Details Section */}
         <h1 className="text-2xl font-bold sm:text-3xl">
           {restaurant?.info?.name}
         </h1>
@@ -93,8 +94,66 @@ const RestaurantDetails = () => {
           </p>
         </div>
 
+        {/* deals for you section */}
+        <div id="deals_for_you" className="mt-10">
+          <p className="mb-4 text-xl font-bold">Deals for you</p>
+          <div className="flex flex-nowrap items-center gap-x-3 overflow-x-auto sm:gap-x-5">
+            {deals.map((deal) => (
+              <div
+                key={deal?.info?.header}
+                className="flex min-w-xs items-center gap-x-2 rounded-3xl border border-gray-200 bg-white py-2 pl-2"
+              >
+                <div id="img" className="max-w-14">
+                  <img
+                    className="h-full w-full"
+                    src={IMG_CDN_URL + deal?.info?.offerLogo}
+                    alt={deal?.info?.header}
+                  />
+                </div>
+                <div id="detail" className="font-bold">
+                  <p className="text-lg">{deal?.info?.header}</p>
+                  <p className="text-sm text-gray-500">
+                    {deal?.info?.couponCode}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* menu section */}
+        <div
+          id="menu_header"
+          className="mt-10 mb-5 flex items-center justify-center text-center font-bold text-gray-600"
+        >
+          <svg
+            height="24"
+            width="24"
+            viewBox="0 0 24 16"
+            fill="#000"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g opacity=".8" fill="#000" stroke="#000" strokeWidth=".2">
+              <path d="M10.558 4c-.073 0-.119.002-.13.003-1.821 0-3.33.92-4.788 1.811-1.456.889-2.961 1.808-4.796 1.808a.252.252 0 0 0-.251.252c0 .14.112.253.251.253h6.29a.252.252 0 0 0 .25-.253.252.252 0 0 0-.25-.252H3.33c.91-.363 1.747-.874 2.57-1.376 1.464-.894 2.847-1.738 4.541-1.738.03-.002 1.683-.074 2.742.937.598.571.902 1.389.902 2.43.002.033.097 1.753-.882 2.8-.508.544-1.226.82-2.134.82-.021 0-1.156.034-1.864-.655-.388-.377-.583-.912-.58-1.59 0-.012 0-.753.554-1.31.432-.435 1.088-.655 1.95-.655h.052a.252.252 0 0 0 .002-.505c-1.03-.01-1.827.262-2.366.809a2.492 2.492 0 0 0-.694 1.665c-.004.816.243 1.475.736 1.952.865.839 2.167.795 2.22.793h.002c1.043 0 1.884-.33 2.49-.98 1.129-1.21 1.02-3.082 1.016-3.161 0-1.17-.357-2.112-1.061-2.783C12.48 4.08 11.004 4 10.558 4ZM23.163 7.748h-7.327a.248.248 0 0 0-.243.252c0 .14.109.252.243.252h7.328A.248.248 0 0 0 23.407 8a.248.248 0 0 0-.244-.252Z"></path>
+            </g>
+          </svg>
+          <span className="px-0.5 text-lg">MENU</span>
+          <svg
+            height="24"
+            width="24"
+            className="scale-x-[-1]"
+            viewBox="0 0 24 16"
+            fill="#000"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g opacity=".8" fill="#000" stroke="#000" strokeWidth=".2">
+              <path d="M10.558 4c-.073 0-.119.002-.13.003-1.821 0-3.33.92-4.788 1.811-1.456.889-2.961 1.808-4.796 1.808a.252.252 0 0 0-.251.252c0 .14.112.253.251.253h6.29a.252.252 0 0 0 .25-.253.252.252 0 0 0-.25-.252H3.33c.91-.363 1.747-.874 2.57-1.376 1.464-.894 2.847-1.738 4.541-1.738.03-.002 1.683-.074 2.742.937.598.571.902 1.389.902 2.43.002.033.097 1.753-.882 2.8-.508.544-1.226.82-2.134.82-.021 0-1.156.034-1.864-.655-.388-.377-.583-.912-.58-1.59 0-.012 0-.753.554-1.31.432-.435 1.088-.655 1.95-.655h.052a.252.252 0 0 0 .002-.505c-1.03-.01-1.827.262-2.366.809a2.492 2.492 0 0 0-.694 1.665c-.004.816.243 1.475.736 1.952.865.839 2.167.795 2.22.793h.002c1.043 0 1.884-.33 2.49-.98 1.129-1.21 1.02-3.082 1.016-3.161 0-1.17-.357-2.112-1.061-2.783C12.48 4.08 11.004 4 10.558 4ZM23.163 7.748h-7.327a.248.248 0 0 0-.243.252c0 .14.109.252.243.252h7.328A.248.248 0 0 0 23.407 8a.248.248 0 0 0-.244-.252Z"></path>
+            </g>
+          </svg>
+        </div>
+
         {/* Recommended Items Accordion */}
-        <div data-testid="resCategories" className="mt-10 bg-white">
+        <div data-testid="resCategories" className="bg-white">
           {itemCategories.map((itemCategory, index) => {
             return (
               <RestaurantCategory
