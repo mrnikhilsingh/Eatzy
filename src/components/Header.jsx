@@ -80,12 +80,12 @@ const Header = () => {
       <div
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         id="overlay"
-        className={`${isSidebarOpen ? "block" : "hidden"} absolute z-10 h-screen w-screen cursor-pointer bg-black opacity-80`}
+        className={`${isSidebarOpen ? "block" : "hidden"} fixed inset-0 z-30 h-screen w-screen cursor-pointer bg-black opacity-80`}
       ></div>
       {/* sidebar container */}
       <div
         id="sidebar"
-        className={`absolute ${isSidebarOpen ? "left-0" : "-left-full"} z-20 h-screen w-full overflow-hidden overflow-y-auto bg-white p-3 transition-all duration-500 sm:w-sm md:w-md`}
+        className={`fixed inset-0 ${isSidebarOpen ? "left-0" : "-left-full"} z-40 h-screen w-full overflow-hidden overflow-y-auto bg-white p-3 transition-all duration-500 sm:w-sm md:w-md`}
       >
         <span
           onClick={toggleSidebar}
@@ -178,7 +178,7 @@ const Header = () => {
         </div>
       </div>
 
-      <nav className="fixed top-0 left-0 z-20 w-full border-b border-white/30 bg-white/40 shadow-md backdrop-blur-lg">
+      <nav className="fixed top-0 left-0 z-20 w-full border-b border-white/30 bg-white/60 shadow-md backdrop-blur-lg">
         <div className="mx-auto max-w-7xl px-2 sm:px-4">
           <div className="flex items-center justify-between">
             <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-8">
