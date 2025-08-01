@@ -29,7 +29,7 @@ const ItemList = ({ items, isReadMore }) => {
 
   return items.map((item) => {
     const isExistingCartItem = cartItems.find(
-      (cartItem) => cartItem?.card?.info?.id === item?.card?.info?.id,
+      (cartItem) => cartItem?.info?.id === item?.card?.info?.id,
     );
     return (
       <div
@@ -76,7 +76,7 @@ const ItemList = ({ items, isReadMore }) => {
             </p>
           )}
           {/* item name */}
-          <p className="font-bold text-gray-600 sm:text-lg">
+          <p className="font-bold text-gray-700 sm:text-lg">
             {item?.card?.info?.name}
           </p>
           {/* item price */}
@@ -84,10 +84,10 @@ const ItemList = ({ items, isReadMore }) => {
             {item?.card?.info?.finalPrice ? (
               <>
                 <span className="pr-1 text-gray-500 line-through">
-                  ₹{item?.card?.info?.price / 100}
+                  ₹{Math.floor(item?.card?.info?.price / 100)}
                 </span>
                 <span className="flex items-center gap-0.5">
-                  ₹{item?.card?.info?.finalPrice / 100}
+                  ₹{Math.floor(item?.card?.info?.finalPrice / 100)}
                   <span className="relative top-0.5">
                     <svg
                       width="14"
@@ -109,8 +109,8 @@ const ItemList = ({ items, isReadMore }) => {
             ) : (
               <span>
                 ₹
-                {item?.card?.info?.price / 100 ||
-                  item?.card?.info?.defaultPrice / 100}
+                {Math.floor(item?.card?.info?.price / 100) ||
+                  Math.floor(item?.card?.info?.defaultPrice / 100)}
               </span>
             )}
           </p>
@@ -128,7 +128,7 @@ const ItemList = ({ items, isReadMore }) => {
           {/* item description */}
           <div className="flex items-end">
             <p
-              className={`${isReadMore ? "" : "line-clamp-2"} text-sm font-semibold break-all text-gray-500 sm:text-base`}
+              className={`${isReadMore ? "" : "line-clamp-2"} text-sm break-all text-gray-600 sm:text-base`}
             >
               {item?.card?.info?.description}
             </p>
@@ -159,7 +159,7 @@ const ItemList = ({ items, isReadMore }) => {
                 -
               </button>
               <span className="border-x border-gray-300 px-3 py-1 font-semibold text-green-700">
-                {isExistingCartItem?.card?.info?.quantity}
+                {isExistingCartItem?.info?.quantity}
               </span>
               <button
                 onClick={() => handleIncrementQuantity(item?.card?.info?.id)}
@@ -170,7 +170,7 @@ const ItemList = ({ items, isReadMore }) => {
             </div>
           ) : (
             <button
-              onClick={() => handleClick(item)}
+              onClick={() => handleClick(item?.card)}
               className="absolute -bottom-4 left-1/2 -translate-x-1/2 cursor-pointer rounded-lg border border-gray-300 bg-white px-5 py-1 text-lg font-bold text-green-700 shadow-sm sm:px-10"
             >
               ADD

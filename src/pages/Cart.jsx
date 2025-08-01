@@ -22,10 +22,10 @@ const Cart = () => {
   const subtotal = cartItems.reduce(
     (sum, item) =>
       sum +
-      (item?.card?.info?.finalPrice / 100 ||
-        item?.card?.info?.price / 100 ||
-        item?.card?.info?.defaultPrice / 100) *
-        item?.card?.info?.quantity,
+      (Math.floor(item?.info?.finalPrice / 100) ||
+        Math.floor(item?.info?.price / 100) ||
+        Math.floor(item?.info?.defaultPrice / 100)) *
+        item?.info?.quantity,
     0,
   );
   const deliveryFee = 29;
@@ -116,15 +116,12 @@ const Cart = () => {
 
                 <div className="divide-y">
                   {cartItems.map((item) => (
-                    <div
-                      key={item.card.info.id}
-                      className="border-gray-300 p-4"
-                    >
+                    <div key={item.info.id} className="border-gray-300 p-4">
                       <div className="flex items-start space-x-4">
                         {/* Item Image */}
                         <img
-                          src={IMG_CDN_URL + item.card.info.imageId}
-                          alt={item.card.info.name}
+                          src={IMG_CDN_URL + item.info.imageId}
+                          alt={item.info.name}
                           className="h-16 w-16 rounded-lg object-cover"
                         />
 
@@ -133,10 +130,10 @@ const Cart = () => {
                           <div className="flex items-start justify-between">
                             <div>
                               <h3 className="font-medium text-gray-800">
-                                {item.card.info.name}
+                                {item.info.name}
                               </h3>
                               <p className="text-sm text-gray-500">
-                                {item.card.info.category}
+                                {item.info.category}
                               </p>
                               {item.customization && (
                                 <p className="mt-1 text-xs text-gray-400">
@@ -146,9 +143,9 @@ const Cart = () => {
                             </div>
                             <p className="font-semibold text-gray-800">
                               ₹
-                              {item?.card?.info?.finalPrice / 100 ||
-                                item?.card?.info?.price / 100 ||
-                                item?.card?.info?.defaultPrice / 100}
+                              {Math.floor(item?.info?.finalPrice / 100) ||
+                                Math.floor(item?.info?.price / 100) ||
+                                Math.floor(item?.info?.defaultPrice / 100)}
                             </p>
                           </div>
 
@@ -158,8 +155,8 @@ const Cart = () => {
                               <button
                                 onClick={() =>
                                   handleDecrementQuantity(
-                                    item?.card?.info?.id,
-                                    item?.card?.info?.quantity,
+                                    item?.info?.id,
+                                    item?.info?.quantity,
                                   )
                                 }
                                 className="cursor-pointer px-3 py-1 text-orange-500 hover:bg-orange-50"
@@ -167,11 +164,11 @@ const Cart = () => {
                                 -
                               </button>
                               <span className="border-x border-gray-300 px-3 py-1">
-                                {item?.card?.info?.quantity}
+                                {item?.info?.quantity}
                               </span>
                               <button
                                 onClick={() =>
-                                  handleIncrementQuantity(item?.card?.info?.id)
+                                  handleIncrementQuantity(item?.info?.id)
                                 }
                                 className="cursor-pointer px-3 py-1 text-orange-500 hover:bg-orange-50"
                               >
@@ -179,9 +176,7 @@ const Cart = () => {
                               </button>
                             </div>
                             <button
-                              onClick={() =>
-                                handleRemoveItem(item?.card?.info?.id)
-                              }
+                              onClick={() => handleRemoveItem(item?.info?.id)}
                               className="cursor-pointer text-sm text-red-500 hover:text-red-600"
                             >
                               Remove

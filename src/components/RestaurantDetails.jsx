@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addItem,
+  decrementQuantity,
+  incrementQuantity,
+  removeItem,
+} from "../store/cartSlice";
+import { toast } from "sonner";
 
 import ShimmerRestaurantDetail from "./ShimmerRestaurantDetail";
 import useRestaurantMenu from "../hooks/useRestaurantMenu";
@@ -10,7 +17,9 @@ import { IMG_CDN_URL } from "../lib/constants";
 const RestaurantDetails = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const { id } = useParams();
+  const dispatch = useDispatch();
 
+  const cartItems = useSelector((store) => store.cart);
   const { latitude, longitude } = useSelector((store) => store.location);
 
   // fetch restaurant menu data using custom hook
@@ -28,6 +37,33 @@ const RestaurantDetails = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.NestedItemCategory"
     );
   });
+
+  const topPicks = categories?.filter((category) => {
+    const type = category.card.card["@type"];
+    return (
+      type === "type.googleapis.com/swiggy.presentation.food.v2.MenuCarousel"
+    );
+  });
+
+  // handle add to cart
+  const handleClick = (item) => {
+    dispatch(addItem(item));
+    toast.success("Item added to cart");
+  };
+
+  // increment item quantity
+  const handleIncrementQuantity = (id) => {
+    dispatch(incrementQuantity(id));
+  };
+
+  // decrement quantity or remove item
+  const handleDecrementQuantity = (id, quantity) => {
+    if (quantity <= 1) {
+      dispatch(removeItem(id));
+      toast.success("Item removed");
+    }
+    dispatch(decrementQuantity(id));
+  };
 
   if (restaurant === null) return <ShimmerRestaurantDetail />;
 
@@ -95,31 +131,33 @@ const RestaurantDetails = () => {
         </div>
 
         {/* deals for you section */}
-        <div id="deals_for_you" className="mt-10">
-          <p className="mb-4 text-xl font-bold">Deals for you</p>
-          <div className="flex flex-nowrap items-center gap-x-3 overflow-x-auto sm:gap-x-5">
-            {deals.map((deal) => (
-              <div
-                key={deal?.info?.header}
-                className="flex min-w-xs items-center gap-x-2 rounded-3xl border border-gray-200 bg-white py-2 pl-2"
-              >
-                <div id="img" className="max-w-14">
-                  <img
-                    className="h-full w-full"
-                    src={IMG_CDN_URL + deal?.info?.offerLogo}
-                    alt={deal?.info?.header}
-                  />
+        {deals && (
+          <div id="deals_for_you" className="mt-10">
+            <p className="mb-4 text-xl font-bold">Deals for you</p>
+            <div className="flex flex-nowrap items-center gap-x-3 overflow-x-auto sm:gap-x-5">
+              {deals.map((deal) => (
+                <div
+                  key={deal?.info?.offerIds[0]}
+                  className="flex min-w-xs items-center gap-x-2 rounded-3xl border border-gray-200 bg-white py-2 pl-2"
+                >
+                  <div id="img" className="max-w-14">
+                    <img
+                      className="h-full w-full"
+                      src={IMG_CDN_URL + deal?.info?.offerLogo}
+                      alt={deal?.info?.header}
+                    />
+                  </div>
+                  <div id="detail" className="font-bold">
+                    <p className="text-lg">{deal?.info?.header}</p>
+                    <p className="text-sm text-gray-500">
+                      {deal?.info?.couponCode || deal?.info?.description}
+                    </p>
+                  </div>
                 </div>
-                <div id="detail" className="font-bold">
-                  <p className="text-lg">{deal?.info?.header}</p>
-                  <p className="text-sm text-gray-500">
-                    {deal?.info?.couponCode}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* menu section */}
         <div
@@ -152,9 +190,88 @@ const RestaurantDetails = () => {
           </svg>
         </div>
 
+        {/* Top Picks */}
+        {topPicks.length !== 0 && (
+          <div id="top_picks" className="mb-10">
+            <p className="mb-4 text-xl font-bold">Top Picks</p>
+            <div className="flex flex-nowrap items-center gap-x-3 overflow-x-auto sm:gap-x-5">
+              {topPicks[0]?.card?.card?.carousel.map((item) => {
+                const isExistingCartItem = cartItems.find(
+                  (cartItem) => cartItem?.info?.id === item?.dish?.info?.id,
+                );
+
+                return (
+                  <div key={item?.bannerId} className="relative shrink-0">
+                    <div id="img" className="max-w-52 sm:max-w-3xs">
+                      <img
+                        className="h-full w-full"
+                        src={IMG_CDN_URL + item?.creativeId}
+                        alt={item?.title}
+                      />
+                    </div>
+                    <div className="absolute bottom-5 flex w-full items-center justify-between px-6">
+                      <div className="flex flex-col font-semibold text-white">
+                        {item?.dish?.info?.finalPrice ? (
+                          <>
+                            <span className="pr-1 line-through">
+                              ₹{Math.floor(item?.dish?.info?.price / 100)}
+                            </span>
+                            <span>
+                              ₹{Math.floor(item?.dish?.info?.finalPrice / 100)}
+                            </span>
+                          </>
+                        ) : (
+                          <span>
+                            ₹
+                            {Math.floor(item?.dish?.info?.price / 100) ||
+                              Math.floor(item?.dish?.info?.defaultPrice / 100)}
+                          </span>
+                        )}
+                      </div>
+                      {isExistingCartItem ? (
+                        <div className="flex items-center overflow-hidden rounded-md border border-gray-300 bg-white text-lg">
+                          <button
+                            onClick={() =>
+                              handleDecrementQuantity(
+                                item?.dish?.info?.id,
+                                isExistingCartItem?.info?.quantity,
+                              )
+                            }
+                            className="cursor-pointer px-3 py-1 text-orange-500 hover:bg-orange-50"
+                          >
+                            -
+                          </button>
+                          <span className="border-x border-gray-300 px-3 py-1 font-semibold text-green-700">
+                            {isExistingCartItem?.info?.quantity}
+                          </span>
+                          <button
+                            onClick={() =>
+                              handleIncrementQuantity(item?.dish?.info?.id)
+                            }
+                            className="cursor-pointer px-3 py-1 text-orange-500 hover:bg-orange-50"
+                          >
+                            +
+                          </button>
+                        </div>
+                      ) : (
+                        <button
+                          onClick={() => handleClick(item?.dish)}
+                          className="cursor-pointer rounded-lg border border-gray-300 bg-white px-5 py-1 text-lg font-bold text-green-700 shadow-sm sm:px-10"
+                        >
+                          ADD
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         {/* Recommended Items Accordion */}
         <div data-testid="resCategories" className="bg-white">
-          {itemCategories.map((itemCategory, index) => {
+          {itemCategories?.map((itemCategory, index) => {
             return (
               <RestaurantCategory
                 key={itemCategory.card.card.title}
