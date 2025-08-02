@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addItem,
@@ -19,6 +19,7 @@ const RestaurantDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
+  const cityName = useSelector((store) => store.city);
   const cartItems = useSelector((store) => store.cart);
   const { latitude, longitude } = useSelector((store) => store.location);
 
@@ -68,8 +69,21 @@ const RestaurantDetails = () => {
   if (restaurant === null) return <ShimmerRestaurantDetail />;
 
   return (
-    <div>
-      <div className="mx-auto md:max-w-3xl">
+    <div className="mx-auto pt-8 sm:pt-10 md:max-w-3xl">
+      <p className="flex gap-1 text-[10px] font-semibold text-gray-500 sm:gap-2">
+        <Link
+          to="/"
+          className="cursor-pointer transition-colors hover:text-black"
+        >
+          Home
+        </Link>
+        /
+        <span className="cursor-pointer transition-colors hover:text-black">
+          {cityName}
+        </span>
+        /<span className="text-black">{restaurant?.info?.name}</span>
+      </p>
+      <div className="mt-20">
         {/* Restaurant Details Section */}
         <h1 className="text-2xl font-bold sm:text-3xl">
           {restaurant?.info?.name}

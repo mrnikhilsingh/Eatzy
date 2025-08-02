@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center bg-gray-50 px-4 py-12">
+    <div className="flex min-h-[60vh] flex-col items-center justify-center bg-gray-50 px-4 pt-20 pb-12">
       <h1 className="mb-4 text-4xl font-bold text-orange-600">About Us</h1>
       <p className="mb-6 max-w-2xl text-center text-lg text-gray-700">
         Welcome to <span className="font-semibold text-orange-600">Eatzy</span>,

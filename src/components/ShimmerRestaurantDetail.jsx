@@ -1,6 +1,9 @@
 const ShimmerRestaurantDetail = () => {
   return (
-    <div id="restaurant-details-shimmer" className="mx-auto md:max-w-3xl">
+    <div
+      id="restaurant-details-shimmer"
+      className="mx-auto pt-16 sm:pt-20 md:max-w-3xl"
+    >
       {/* Restaurant Name */}
       <div className="relative h-9 overflow-hidden rounded-md bg-gray-200 sm:w-md">
         <div className="absolute inset-0">

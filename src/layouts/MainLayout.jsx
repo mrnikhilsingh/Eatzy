@@ -11,7 +11,7 @@ const MainLayout = () => {
       <Provider store={store}>
         <Toaster richColors closeButton expand={false} position="top-center" />
         <Header />
-        <main className="mt-20 bg-gray-50 px-2 py-10 sm:px-3 sm:py-16 md:px-5">
+        <main className="bg-gray-50 px-3 pt-16 pb-10 sm:px-3 sm:pb-16 md:px-5">
           <Outlet />
         </main>
         <Footer />

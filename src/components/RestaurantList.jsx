@@ -31,7 +31,7 @@ const RestaurantList = () => {
   };
 
   return (
-    <>
+    <div className="pt-16 sm:pt-20">
       {/* what's on your mind */}
 
       {whatsOnYourMind && (
@@ -142,7 +142,7 @@ const RestaurantList = () => {
               );
             })}
       </section>
-    </>
+    </div>
   );
 };
 

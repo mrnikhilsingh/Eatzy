@@ -79,7 +79,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-20">
       {cartItems.length === 0 ? (
         <>
           <img

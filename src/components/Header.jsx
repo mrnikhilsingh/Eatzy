@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../store/locationSlice";
 
@@ -20,6 +20,9 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const cartItems = useSelector((store) => store.cart);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // fetch place lists based on search input
   const { placesList, isLoading, setIsLoading, placeError } =
@@ -63,6 +66,9 @@ const Header = () => {
 
   // handle place change
   const handleClick = (id, addr) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+    }
     setPlaceID(id);
     setPlaceAddr(addr);
     setIsSidebarOpen(!isSidebarOpen);
@@ -178,7 +184,7 @@ const Header = () => {
         </div>
       </div>
 
-      <nav className="fixed top-0 left-0 z-20 w-full border-b border-white/30 bg-white/60 shadow-md backdrop-blur-lg">
+      <nav className="fixed top-0 left-0 z-20 w-full border-b border-white/30 bg-white/60 shadow-lg backdrop-blur-lg">
         <div className="mx-auto max-w-7xl px-2 sm:px-4">
           <div className="flex items-center justify-between">
             <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-8">
