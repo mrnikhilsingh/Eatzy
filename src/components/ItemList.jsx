@@ -84,7 +84,9 @@ const ItemList = ({ items, isReadMore }) => {
             {item?.card?.info?.finalPrice ? (
               <>
                 <span className="pr-1 text-gray-500 line-through">
-                  ₹{Math.floor(item?.card?.info?.price / 100)}
+                  ₹
+                  {Math.floor(item?.card?.info?.price / 100) ||
+                    Math.floor(item?.card?.info?.defaultPrice / 100)}
                 </span>
                 <span className="flex items-center gap-0.5">
                   ₹{Math.floor(item?.card?.info?.finalPrice / 100)}
@@ -142,6 +144,7 @@ const ItemList = ({ items, isReadMore }) => {
               className="h-full w-full object-cover"
               src={IMG_CDN_URL + item?.card?.info?.imageId}
               alt={item?.card?.info?.name}
+              loading="lazy"
             />
           </div>
 

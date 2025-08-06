@@ -190,7 +190,7 @@ const Header = () => {
             <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-8">
               {/* Logo */}
               <div className="max-w-12 py-2 sm:max-w-14">
-                <img className="w-full" src={logo} alt="logo" />
+                <img className="w-full" src={logo} alt="logo" loading="lazy" />
               </div>
               <div
                 onClick={toggleSidebar}

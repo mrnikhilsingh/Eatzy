@@ -46,6 +46,7 @@ const RestaurantList = () => {
                   className="h-full w-full mix-blend-darken"
                   src={WHATS_ON_YOUR_MIND_IMG_CDN + item?.imageId}
                   alt={item?.action?.text}
+                  loading="lazy"
                 />
               </div>
             ))}

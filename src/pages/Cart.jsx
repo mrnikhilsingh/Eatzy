@@ -86,6 +86,7 @@ const Cart = () => {
             className="mx-auto h-full w-full max-w-xs"
             src={emptyCartImg}
             alt="empty-cart-image"
+            loading="lazy"
           />
           <div className="mt-5">
             <p className="text-center text-xl font-bold text-gray-800">
@@ -123,6 +124,7 @@ const Cart = () => {
                           src={IMG_CDN_URL + item.info.imageId}
                           alt={item.info.name}
                           className="h-16 w-16 rounded-lg object-cover"
+                          loading="lazy"
                         />
 
                         {/* Item Details */}

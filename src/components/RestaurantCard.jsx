@@ -43,6 +43,7 @@ const RestaurantCard = ({ restaurant, isChains = false }) => {
             src={IMG_CDN_URL + cloudinaryImageId}
             alt={name}
             className="h-full w-full object-cover"
+            loading="lazy"
           />
 
           {/* Gradient Overlay */}

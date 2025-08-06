@@ -183,6 +183,7 @@ const RestaurantDetails = () => {
                       className="h-full w-full"
                       src={IMG_CDN_URL + deal?.info?.offerLogo}
                       alt={deal?.info?.header}
+                      loading="lazy"
                     />
                   </div>
                   <div id="detail" className="font-bold">
@@ -245,6 +246,7 @@ const RestaurantDetails = () => {
                         className="h-full w-full"
                         src={IMG_CDN_URL + item?.creativeId}
                         alt={item?.title}
+                        loading="lazy"
                       />
                     </div>
                     <div className="absolute bottom-5 flex w-full items-center justify-between px-6">
