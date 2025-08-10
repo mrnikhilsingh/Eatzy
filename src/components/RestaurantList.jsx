@@ -11,11 +11,11 @@ const RestaurantList = () => {
 
   const {
     data,
+    whatsOnYourMind,
+    topRestaurantChains,
     restaurants,
     filteredRestaurants,
     setFilteredRestaurants,
-    whatsOnYourMind,
-    topRestaurantChains,
     error,
   } = useRestaurant({ latitude, longitude });
 
@@ -29,6 +29,17 @@ const RestaurantList = () => {
     );
     setFilteredRestaurants(filteredRestaurants);
   };
+
+  if (error) {
+    return (
+      <div id="error_container" className="mx-auto max-w-lg pt-20 pb-96">
+        <div className="relative rounded border border-red-500 bg-red-100 px-4 py-3 text-red-700">
+          <strong className="font-bold">Error! </strong>
+          <span className="block sm:inline">{error.message}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="pt-16 sm:pt-20">

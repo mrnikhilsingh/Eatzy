@@ -7,11 +7,21 @@ const Contact = () => {
         out to us directly.
       </p>
       <form
-        netlify
         name="Eatzy-Contact-Form"
         method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
         className="w-full max-w-md space-y-4 rounded-lg bg-white p-6 shadow-md"
       >
+        {/* Hidden form-name input for Netlify */}
+        <input type="hidden" name="form-name" value="Eatzy-Contact-Form" />
+
+        {/* Honeypot field (hidden from users) */}
+        <p hidden>
+          <label>
+            Don't fill this out: <input name="bot-field" />
+          </label>
+        </p>
         <div>
           <label className="mb-1 block font-semibold text-gray-700">Name</label>
           <input

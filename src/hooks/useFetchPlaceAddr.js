@@ -1,57 +1,44 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import getBaseURL from "../utils/getBaseURL";
 import { useDispatch } from "react-redux";
 import { setCityName } from "../store/citySlice";
+import { useQuery } from "@tanstack/react-query";
+
+const BASE_URL = getBaseURL();
+
+const fetchPlaceAddr = async (placeId) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/dapi/misc/address-recommend?place_id=${placeId}`,
+  );
+  return data;
+};
 
 const useFetchPlaceAddr = (placeId) => {
-  const [data, setData] = useState(null);
-  const [latitude, setLatitude] = useState(null);
-  const [longitude, setLongitude] = useState(null);
-  const [error, setError] = useState(null);
-
   const dispatch = useDispatch();
-  const BASE_URL = getBaseURL();
 
-  useEffect(() => {
-    // cleanup on place change
-    setData(null);
-    setLatitude(null);
-    setLongitude(null);
-    setError(null);
-    if (placeId !== undefined && placeId !== null && placeId !== "") {
-      fetchPlaceAddr(placeId);
-    }
-  }, [placeId]);
+  const { data, error } = useQuery({
+    queryKey: ["placeAddr", placeId],
+    queryFn: () => fetchPlaceAddr(placeId),
+    enabled: !!placeId,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
 
-  async function fetchPlaceAddr(id) {
-    try {
-      const response = await axios.get(
-        `${BASE_URL}/dapi/misc/address-recommend?place_id=${id}`,
-      );
-      const data = response.data;
+  const latitude = data?.data[0]?.geometry?.location?.lat ?? null;
+  const longitude = data?.data[0]?.geometry?.location?.lng ?? null;
 
-      setData(data?.data[0]);
-      setLatitude(data?.data[0]?.geometry?.location?.lat);
-      setLongitude(data?.data[0]?.geometry?.location?.lng);
+  const addressComponents = data?.data[0]?.address_components;
+  let stateObj = null;
+  if (Array.isArray(addressComponents)) {
+    [stateObj] = addressComponents.filter(
+      (comp) => comp?.types && comp.types[0]?.includes("state"),
+    );
+  }
 
-      // finding the state name
-      const addressComponents = data?.data[0]?.address_components;
-      let stateObj = null;
-      if (Array.isArray(addressComponents)) {
-        [stateObj] = addressComponents.filter(
-          (comp) => comp?.types && comp.types[0]?.includes("state"),
-        );
-      }
-
-      // set city name for dynamic url
-      if (stateObj && stateObj.long_name) {
-        dispatch(setCityName(stateObj.long_name));
-      }
-    } catch (error) {
-      console.log("Error Fetching Address:", error);
-      setError(error);
-    }
+  // set city name for dynamic url
+  if (stateObj && stateObj.long_name) {
+    dispatch(setCityName(stateObj.long_name));
   }
 
   return { data, latitude, longitude, error };

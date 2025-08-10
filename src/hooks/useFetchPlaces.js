@@ -1,42 +1,29 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import getBaseURL from "../utils/getBaseURL";
+import { useQuery } from "@tanstack/react-query";
+
+const BASE_URL = getBaseURL();
+
+const fetchPlaces = async (place) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/dapi/misc/place-autocomplete?input=${place}`,
+  );
+  return data;
+};
 
 const useFetchPlaces = (place) => {
-  const [placesList, setPlacesList] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [placeError, setPlaceError] = useState(null);
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["places", place],
+    queryFn: () => fetchPlaces(place),
+    enabled: !!place,
+    staleTime: Infinity,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
 
-  const BASE_URL = getBaseURL();
+  const placesList = data?.data ?? null;
 
-  useEffect(() => {
-    setPlaceError(null);
-    if (!place) {
-      setIsLoading(false);
-      setPlacesList(null);
-      return;
-    }
-    fetchPlaces(place);
-  }, [place]);
-
-  async function fetchPlaces(place) {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(
-        `${BASE_URL}/dapi/misc/place-autocomplete?input=${place}`,
-      );
-      const data = response.data;
-
-      setPlacesList(data?.data);
-      setIsLoading(false);
-    } catch (error) {
-      setIsLoading(false);
-      setPlaceError(error);
-      console.log("Error Fetching place Data:", error);
-    }
-  }
-
-  return { placesList, isLoading, setIsLoading, placeError };
+  return { placesList, isLoading, error };
 };
 
 export default useFetchPlaces;

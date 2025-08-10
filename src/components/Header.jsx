@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { NavLink, useLocation, useNavigate } from "react-router";
+import { Link, NavLink, useLocation, useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { setLocation } from "../store/locationSlice";
 
@@ -25,8 +25,7 @@ const Header = () => {
   const location = useLocation();
 
   // fetch place lists based on search input
-  const { placesList, isLoading, setIsLoading, placeError } =
-    useFetchPlaces(debouncedInput);
+  const { placesList, isLoading, error } = useFetchPlaces(debouncedInput);
   const { latitude, longitude } = useFetchPlaceAddr(placeID);
 
   useEffect(() => {
@@ -45,7 +44,7 @@ const Header = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedInput(searchInput);
-    }, 1000); // 1000ms debounce
+    }, 1000); // 1 sec debounce
 
     return () => clearTimeout(timer);
   }, [searchInput]);
@@ -76,7 +75,6 @@ const Header = () => {
 
   // handle input change when user searches for place
   const handleInputChange = (e) => {
-    setIsLoading(true);
     setSearchInput(e.target.value);
   };
 
@@ -126,7 +124,7 @@ const Header = () => {
               <div className="h-4 w-4 animate-bounce rounded-full bg-orange-500 [animation-delay:-.3s]"></div>
               <div className="h-4 w-4 animate-bounce rounded-full bg-orange-500 [animation-delay:-.5s]"></div>
             </div>
-          ) : placeError ? (
+          ) : error ? (
             <p className="flex items-center rounded-lg border border-red-300 bg-red-50 px-4 py-2 font-semibold text-red-800">
               <svg
                 className="shirnk-0 me-2 mt-1 h-4 w-4 justify-center"
@@ -137,9 +135,7 @@ const Header = () => {
                 <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336l24 0 0-64-24 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l48 0c13.3 0 24 10.7 24 24l0 88 8 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-80 0c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z" />
               </svg>
               <span>
-                {placeError && placeError.message
-                  ? placeError.message
-                  : "An error occurred!"}
+                {error && error.message ? error.message : "An error occurred!"}
               </span>
             </p>
           ) : (
@@ -189,9 +185,9 @@ const Header = () => {
           <div className="flex items-center justify-between">
             <div className="flex shrink-0 items-center gap-x-3 sm:gap-x-8">
               {/* Logo */}
-              <div className="max-w-12 py-2 sm:max-w-14">
+              <Link to={"/"} className="max-w-12 py-2 sm:max-w-14">
                 <img className="w-full" src={logo} alt="logo" loading="lazy" />
-              </div>
+              </Link>
               <div
                 onClick={toggleSidebar}
                 className="group flex max-w-[150px] cursor-pointer items-center gap-x-2 text-xs sm:max-w-2xs sm:text-base"

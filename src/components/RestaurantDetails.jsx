@@ -24,11 +24,13 @@ const RestaurantDetails = () => {
   const { latitude, longitude } = useSelector((store) => store.location);
 
   // fetch restaurant menu data using custom hook
-  const [restaurant, categories, deals] = useRestaurantMenu({
-    id,
-    latitude,
-    longitude,
-  });
+  const { restaurant, categories, deals, error, isLoading } = useRestaurantMenu(
+    {
+      id,
+      latitude,
+      longitude,
+    },
+  );
 
   const itemCategories = categories?.filter((category) => {
     const type = category.card.card["@type"];
@@ -66,7 +68,25 @@ const RestaurantDetails = () => {
     dispatch(decrementQuantity(id));
   };
 
-  if (restaurant === null) return <ShimmerRestaurantDetail />;
+  if (isLoading) return <ShimmerRestaurantDetail />;
+  if (error) {
+    return (
+      <div id="error_container" className="mx-auto max-w-lg pt-20 pb-96">
+        <div className="relative rounded border border-red-500 bg-red-100 px-4 py-3 text-red-700">
+          <strong className="font-bold">Error! </strong>
+          <span className="block sm:inline">{error.message}</span>
+        </div>
+        <div className="mt-4">
+          <Link
+            to="/"
+            className="cursor-pointer rounded-md bg-orange-500 px-4 py-2 font-semibold text-white transition-colors hover:bg-orange-600"
+          >
+            Go to Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto pt-8 sm:pt-10 md:max-w-3xl">
@@ -230,7 +250,7 @@ const RestaurantDetails = () => {
         </div>
 
         {/* Top Picks */}
-        {topPicks.length !== 0 && (
+        {topPicks?.length !== 0 && (
           <div id="top_picks" className="mb-10">
             <p className="mb-4 text-xl font-bold">Top Picks</p>
             <div className="flex flex-nowrap items-center gap-x-3 overflow-x-auto sm:gap-x-5">
